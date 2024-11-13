@@ -5,25 +5,53 @@ import Waits from "../Waits/Waits";
 
 interface CharacterSheetProps {
   name: string;
-  characterClass: string;
-  level: number;
-  race: string;
-  alignment: string;
 }
 
 const CharacterSheet: React.FC<CharacterSheetProps> = ({ name }) => {
+  const [currentTab, setCurrentTab] = React.useState("abilities");
+  const handleClick = (tab: string) => {
+    if (tab === currentTab) {
+      setCurrentTab("home");
+    } else {
+      setCurrentTab(tab);
+    }
+  };
+
   return (
     <div className="character-sheet">
       <div className="character-header">
         <h1 className="character-name">{name}</h1>
-        <p className="character-sheet-header-text">Abilities</p>
-        <p className="character-sheet-header-text">Inventory</p>
-        <p className="character-sheet-header-text">Info</p>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === "abilities" ? "selected" : ""
+          }`}
+          onClick={() => handleClick("abilities")}
+        >
+          Abilities
+        </p>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === "inventory" ? "selected" : ""
+          }`}
+          onClick={() => handleClick("inventory")}
+        >
+          Inventory
+        </p>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === "info" ? "selected" : ""
+          }`}
+          onClick={() => handleClick("info")}
+        >
+          Info
+        </p>
       </div>
-      <div className="sheet-body">
-        <Waits />
-        <Abilities />
-      </div>
+      {currentTab === "abilities" && (
+        <div className="sheet-body">
+          <Waits />
+          <Abilities />
+        </div>
+      )}
     </div>
   );
 };

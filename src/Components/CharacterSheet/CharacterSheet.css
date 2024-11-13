@@ -41,11 +41,17 @@
   font-family: "Venite", sans-serif;
   color: blueviolet;
   cursor: default;
+  user-select: none;
 }
 
 .character-sheet-header-text {
   font-family: "Venite", sans-serif;
+  user-select: none;
   cursor: pointer;
+}
+
+.character-sheet-header-text.selected {
+  color: rgb(207, 97, 46);
 }
 
 .character-sheet-header-text:hover {

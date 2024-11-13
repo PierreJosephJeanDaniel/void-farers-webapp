@@ -6,13 +6,7 @@ function App() {
   return (
     <>
       <Starfield />
-      <CharacterSheet
-        name={"Bilbo Baggins"}
-        characterClass={"Rogue"}
-        level={2}
-        race={"Hobbit"}
-        alignment={"Good"}
-      />
+      <CharacterSheet name={"Bilbo Baggins"} />
     </>
   );
 }

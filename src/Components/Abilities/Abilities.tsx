@@ -20,12 +20,14 @@ const Abilities: React.FC = () => {
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
-        <Ability name="Strength" value={""} />
-        <Ability name="Dexterity" value={""} />
-        <Ability name="Constitution" value={"+1"} />
-        <Ability name="Intelligence" value={"+2"} />
-        <Ability name="Wisdom" value={""} />
-        <Ability name="Charisma" value={"-1"} />
+        <Ability name="Inspiration" value={""} />
+        <Ability name="Psychic" value={""} />
+        <Ability name="Infiltration" value={"+1"} />
+        <Ability name="Reparation" value={"+2"} />
+        <Ability name="Zero G" value={""} />
+        <Ability name="Dodging" value={"-1"} />
+        <Ability name="Engine Operating" value={"-1"} />
+        <Ability name="Sprinting" value={"+2"} />
       </div>
     </div>
   );

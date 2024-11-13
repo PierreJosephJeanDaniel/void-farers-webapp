@@ -31,23 +31,24 @@
   border-radius: 2%;
   border: 2px solid #016201;
   height: auto;
+  max-height: 600px;
+  overflow-y: auto;
 }
 .abilities {
-  display: flex;
-  flex-wrap: wrap; /* Allow buttons to wrap */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px; /* Space between buttons */
-  justify-content: space-between;
-  padding: 20px;
+  width: 94%;
+  box-sizing: border-box;
 }
 
 .ability {
   cursor: pointer;
-  flex: 1 1 calc(33.333% - 20px);
+  /* flex: 1 1 calc(33.333% - 20px); */
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 5px 0;
   justify-content: space-between;
-  display: flex;
   align-items: center;
   border: 2px solid #00ff00;
   border-radius: 5px;
