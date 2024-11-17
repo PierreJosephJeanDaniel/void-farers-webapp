@@ -1,5 +1,7 @@
 import React from "react";
 import "./Abilities.css";
+import { useDispatch } from "react-redux";
+import { openPopup } from "../../Store/Popup";
 
 interface AbilityProps {
   name: string;
@@ -7,8 +9,16 @@ interface AbilityProps {
 }
 
 const Ability: React.FC<AbilityProps> = ({ name, value }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    console.log("clicked");
+    const message: string = `${name}`;
+    dispatch(openPopup({ message: message }));
+  };
+
   return (
-    <div className="ability" onClick={() => alert(`${name}: ${value}`)}>
+    <div className="ability" onClick={handleClick}>
       <div className="text">{name}</div>
       <div className="number">{value}</div>
     </div>

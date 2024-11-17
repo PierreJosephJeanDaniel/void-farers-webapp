@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit/react";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit/react";
 
 interface PopupState {
   isOpen: boolean;
@@ -14,7 +14,9 @@ const popup = createSlice({
   name: "popup",
   initialState: initialState,
   reducers: {
-    openPopup(state, action) {
+    openPopup(state, action: PayloadAction<{ message: string }>) {
+      console.log("popup open store");
+      console.log(action.payload.message);
       state.isOpen = true;
       state.message = action.payload.message;
     },
