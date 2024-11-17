@@ -6,7 +6,12 @@ import "./Popup.css";
 
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
-  const { isOpen, message } = useSelector((state: RootState) => state.popup);
+  const { isOpen, message, value } = useSelector(
+    (state: RootState) => state.popup
+  );
+
+  const stringValue: string =
+    value < 10 ? value.toString().padStart(2, "0") : value.toString();
 
   if (!isOpen) {
     console.log("Popup is closed");
@@ -27,7 +32,7 @@ const Popup: React.FC = () => {
           </span>
         </div>
         <div className="popup-body">
-          <span className="typing-effect"> .................20</span>
+          <span className="typing-effect"> .................{stringValue}</span>
         </div>
       </div>
     </div>
