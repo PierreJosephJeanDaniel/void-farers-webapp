@@ -24,14 +24,17 @@
   gap: 15px;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   height: 50vh;
   border: 2px solid transparent;
 }
 
 .globe-container:hover {
-  border-color: #00ff00;
+  border-color: #016201;
   border-width: 2px;
+  background: linear-gradient(to top, #000000, #000000, #333333, #333333);
+  background-size: cover;
+  background-size: 100% 5px;
 }
 
 .globe-text {
@@ -44,4 +47,18 @@
 svg {
   width: 200px;
   height: 200px;
+}
+
+@media screen {
+  .crt {
+    animation: crt 5s linear infinite;
+  }
+}
+@keyframes globe-container {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -10px;
+  }
 }
