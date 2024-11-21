@@ -35,6 +35,7 @@
   overflow-y: auto;
 }
 .abilities {
+  padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px; /* Space between buttons */
@@ -44,7 +45,6 @@
 
 .ability {
   cursor: pointer;
-  /* flex: 1 1 calc(33.333% - 20px); */
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 5px 0;
