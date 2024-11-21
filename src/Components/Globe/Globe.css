@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Venite";
+  src: url("../../fonts/VeniteAdoremus-rgRBA.ttf") format("trueType");
+}
+
+@font-face {
+  font-family: "Sevastopol";
+  src: url("../../fonts/Sevastopol-Interface.ttf") format("trueType");
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.globe-container {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 50vh;
+  border: 2px solid transparent;
+}
+
+.globe-container:hover {
+  border-color: #00ff00;
+  border-width: 2px;
+}
+
+.globe-text {
+  font-size: 2em;
+  font-family: "Venite", sans-serif;
+  color: blueviolet;
+  user-select: none;
+}
+
+svg {
+  width: 200px;
+  height: 200px;
+}

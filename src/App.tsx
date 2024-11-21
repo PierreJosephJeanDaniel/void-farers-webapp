@@ -8,6 +8,13 @@ import { useEffect, useState } from "react";
 import { Session, createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Landing from "./Components/Landing/Landing";
 
 // Variables have to be prefixed with VITE_ to be accessible in the client side (https://vite.dev/guide/env-and-mode.html#env-files)
 
@@ -39,7 +46,16 @@ function App() {
     return (
       <Provider store={store}>
         <Starfield />
-        <CharacterSheet name={"Bilbo Baggins"} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Navigate to="/landing" />} />
+            <Route path="/landing" element={<Landing User={session.user} />} />
+            <Route
+              path="/character-sheet"
+              element={<CharacterSheet name={"Bilbo Baggins"} />}
+            />
+          </Routes>
+        </Router>
         <Popup />
       </Provider>
     );
