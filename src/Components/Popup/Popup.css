@@ -10,14 +10,6 @@
   background-color: rgba(16, 35, 21, 0.5);
 }
 
-/* .popup-content {
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  position: relative;
-} */
-
 .popup-content {
   /* scanlines */
   background: linear-gradient(to top, #000000, #000000, #333333, #333333);
@@ -103,7 +95,7 @@
   overflow: hidden;
   white-space: nowrap;
   border-right: 0.15em solid black;
-  animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
   width: fit-content;
 }
 

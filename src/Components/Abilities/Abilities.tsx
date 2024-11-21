@@ -33,7 +33,7 @@ const Abilities: React.FC = () => {
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
-        <Ability name="Inspiration" value={2} />
+        <Ability name="Inspiration" value={3} />
         <Ability name="Psychic" value={0} />
         <Ability name="Infiltration" value={1} />
         <Ability name="Reparation" value={0} />
