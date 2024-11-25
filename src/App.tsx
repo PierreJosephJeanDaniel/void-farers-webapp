@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import CharacterSheet from "./Components/CharacterSheet/CharacterSheet";
-import Starfield from "./Components/Starfield/Starfield";
+import CharacterSheet from "./Screens/CharacterSheet/CharacterSheet";
+import Starfield from "./Screens/Starfield/Starfield";
 import store from "./Store";
 import Popup from "./Components/Popup/Popup";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Landing from "./Components/Landing/Landing";
+import Landing from "./Screens/Landing/Landing";
 
 // Variables have to be prefixed with VITE_ to be accessible in the client side (https://vite.dev/guide/env-and-mode.html#env-files)
 

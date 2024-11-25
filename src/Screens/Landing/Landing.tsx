@@ -1,7 +1,7 @@
 import { User } from "@supabase/supabase-js";
-import Globe from "../Globe/Globe";
+import Globe from "../../Components/Globe/Globe";
 import "./Landing.css";
-import ContinueComponent from "../ContinueComponent/ContinueComponent";
+import ContinueComponent from "../../Components/ContinueComponent/ContinueComponent";
 
 interface LandingProps {
   User: User;
