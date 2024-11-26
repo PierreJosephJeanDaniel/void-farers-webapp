@@ -7,3 +7,21 @@
   justify-content: center;
   gap: 15%;
 }
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.landing-header svg {
+  cursor: pointer;
+  padding-right: 5%;
+  width: 80px;
+  height: 80px;
+}

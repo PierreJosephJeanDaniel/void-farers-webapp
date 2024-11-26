@@ -1,30 +1,47 @@
-import { createSlice } from "@reduxjs/toolkit/react";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit/react";
 
 interface AuthState {
   userName: string;
   isAdmin: boolean;
+  userId: string;
+}
+
+interface LoginPayload {
+  userName: string;
+  userId: string;
 }
 
 const initialState: AuthState = {
   userName: "",
   isAdmin: false,
+  userId: "",
 };
 const auth = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
-    login(state, action) {
-      console.log("login in");
-      state.userName = action.payload.userName;
-      state.isAdmin = action.payload.isAdmin;
+    login: (state: AuthState, action: PayloadAction<LoginPayload>) => {
+      console.log("payload: ", action.payload);
+      return {
+        ...state,
+        userName: action.payload.userName,
+        userId: action.payload.userId,
+      };
     },
-    logout(state) {
-      state.userName = "";
-      state.isAdmin = false;
+    logout: () => {
+      return {
+        ...initialState,
+      };
+    },
+    getAdmin: (state: AuthState, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        isAdmin: action.payload,
+      };
     },
   },
 });
 
-export const { login, logout } = auth.actions;
+export const { login, logout, getAdmin } = auth.actions;
 
 export default auth.reducer;
