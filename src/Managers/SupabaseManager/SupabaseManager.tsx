@@ -3,10 +3,10 @@ import store from "../../Store";
 import { login } from "../../Store/Auth";
 
 class SupabaseManager {
-  private static instance: SupabaseManager;
-  private supabase: SupabaseClient;
+  public static instance: SupabaseManager;
+  public supabase: SupabaseClient;
 
-  private constructor() {
+  public constructor() {
     // Variables have to be prefixed with VITE_ to be accessible in the client side (https://vite.dev/guide/env-and-mode.html#env-files)
     const ApiKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY;
     const SupabaseUlr: string = import.meta.env.VITE_SUPABASE_PROJECT_URL;
@@ -51,14 +51,16 @@ class SupabaseManager {
   }
 
   public async fetchCharacters(userId: string) {
-    const { data, error } = await this.supabase
+    const { data: Characters, error } = await this.supabase
       .from("Characters")
       .select("Name")
       .eq("User", userId);
+
     if (error) throw error;
-    return data;
+    return Characters;
   }
 }
 
-const supabaseManagerInstance = SupabaseManager.get();
-export default supabaseManagerInstance;
+export const supabaseManager = new SupabaseManager();
+// const supabaseManagerInstance = SupabaseManager.get();
+// export default supabaseManagerInstance;

@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
-import SupabaseManager from "../../Managers/SupabaseManager/SupabaseManager";
+import { RootState } from "../../Store";
+import { useSelector } from "react-redux";
+import { supabaseManager } from "../../Managers/SupabaseManager/SupabaseManager";
 
 const CharacterSelection: React.FC = () => {
   const [characters, setCharacters] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const userId = useSelector((state: RootState) => state.auth.userId);
 
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        const user = SupabaseManager.getClient().auth.user();
-        if (user) {
-          const characterData = await SupabaseManager.fetchCharacters(user.id);
-          setCharacters(
-            characterData.map((char: { name: string }) => char.name)
-          );
-        }
+        const characterData = await supabaseManager.fetchCharacters(userId);
+        setCharacters(characterData.map((char: { Name: string }) => char.Name));
       } catch (error) {
         console.error("Error fetching characters:", error);
       } finally {
@@ -23,7 +21,7 @@ const CharacterSelection: React.FC = () => {
     };
 
     fetchCharacters();
-  }, []);
+  }, [userId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -31,7 +29,7 @@ const CharacterSelection: React.FC = () => {
 
   return (
     <div>
-      <h1>Character Selection</h1>
+      <h1>C</h1>
       <ul>
         {characters.map((name, index) => (
           <li key={index}>{name}</li>

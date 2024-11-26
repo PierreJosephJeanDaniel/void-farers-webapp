@@ -14,18 +14,19 @@ import {
   Navigate,
 } from "react-router-dom";
 import Landing from "./Screens/Landing/Landing";
-import SupabaseManager from "./Managers/SupabaseManager/SupabaseManager";
 import "./App.css";
+import CharacterSelection from "./Screens/CharacterSelection/CharacterSelection";
+import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
-    SupabaseManager.getSession().then((session) => {
+    supabaseManager.getSession().then((session) => {
       setSession(session);
     });
 
-    const subscription = SupabaseManager.onAuthStateChange(
+    const subscription = supabaseManager.onAuthStateChange(
       (_event, session) => {
         setSession(session);
       }
@@ -38,7 +39,7 @@ function App() {
     return (
       <div className="auth-container">
         <Auth
-          supabaseClient={SupabaseManager.getClient()}
+          supabaseClient={supabaseManager.getClient()}
           appearance={{
             theme: ThemeSupa,
           }}
@@ -54,6 +55,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/landing" />} />
             <Route path="/landing" element={<Landing User={session.user} />} />
+            <Route
+              path="/character-selection"
+              element={<CharacterSelection />}
+            />
+
             <Route
               path="/character-sheet"
               element={<CharacterSheet name={"Bilbo Baggins"} />}

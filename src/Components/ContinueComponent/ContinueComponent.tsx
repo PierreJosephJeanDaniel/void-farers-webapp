@@ -1,9 +1,13 @@
 import React from "react";
 import "./ContinueComponent.css";
 
-const ContinueComponent: React.FC = () => {
+interface ContinueComponentProps {
+  onClick: () => void;
+}
+
+const ContinueComponent: React.FC<ContinueComponentProps> = ({ onClick }) => {
   return (
-    <div className="continue-container">
+    <div className="continue-container" onClick={onClick}>
       <svg
         width="800px"
         height="800px"
