@@ -4,7 +4,7 @@ import Starfield from "./Screens/Starfield/Starfield";
 import store from "./Store";
 import Popup from "./Components/Popup/Popup";
 import { useEffect, useState } from "react";
-import { Session, createClient } from "@supabase/supabase-js";
+import { Session } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import {
@@ -14,33 +14,38 @@ import {
   Navigate,
 } from "react-router-dom";
 import Landing from "./Screens/Landing/Landing";
-
-// Variables have to be prefixed with VITE_ to be accessible in the client side (https://vite.dev/guide/env-and-mode.html#env-files)
-
-const ApiKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const SupabaseUlr: string = import.meta.env.VITE_SUPABASE_PROJECT_URL;
-
-const supabase = createClient(SupabaseUlr, ApiKey);
+import SupabaseManager from "./Managers/SupabaseManager/SupabaseManager";
+import "./App.css";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    SupabaseManager.getSession().then((session) => {
       setSession(session);
     });
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
+    const subscription = SupabaseManager.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
 
     return () => subscription.unsubscribe();
   }, []);
 
   if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+    return (
+      <div className="auth-container">
+        <Auth
+          supabaseClient={SupabaseManager.getClient()}
+          appearance={{
+            theme: ThemeSupa,
+          }}
+          providers={[]}
+        />
+      </div>
+    );
   } else {
     return (
       <Provider store={store}>
