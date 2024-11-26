@@ -14,7 +14,6 @@ const Popup: React.FC = () => {
     value < 10 ? value.toString().padStart(2, "0") : value.toString();
 
   if (!isOpen) {
-    console.log("Popup is closed");
     return null;
   }
 

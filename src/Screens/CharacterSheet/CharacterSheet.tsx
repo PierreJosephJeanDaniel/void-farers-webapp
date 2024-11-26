@@ -1,7 +1,7 @@
 import React from "react";
 import "./CharacterSheet.css";
-import Abilities from "../Abilities/Abilities";
-import Waits from "../Waits/Waits";
+import Abilities from "../../Components/Abilities/Abilities";
+import Waits from "../../Components/Waits/Waits";
 
 interface CharacterSheetProps {
   name: string;
