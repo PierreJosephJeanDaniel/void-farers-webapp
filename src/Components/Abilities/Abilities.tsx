@@ -8,6 +8,12 @@ interface AbilityProps {
   value: number;
 }
 
+interface Abilities {
+  abilities: {
+    [key: string]: number;
+  };
+}
+
 const Ability: React.FC<AbilityProps> = ({ name, value }) => {
   const dispatch = useDispatch();
   const addedValue: string =
@@ -28,19 +34,14 @@ const Ability: React.FC<AbilityProps> = ({ name, value }) => {
   );
 };
 
-const Abilities: React.FC = () => {
+const Abilities: React.FC<Abilities> = ({ abilities }) => {
   return (
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
-        <Ability name="Inspiration" value={3} />
-        <Ability name="Psychic" value={0} />
-        <Ability name="Infiltration" value={1} />
-        <Ability name="Reparation" value={0} />
-        <Ability name="Zero G" value={0} />
-        <Ability name="Dodging" value={-1} />
-        <Ability name="Engine Operating" value={0} />
-        <Ability name="Sprinting" value={0} />
+        {Object.entries(abilities).map(([name, value]) => (
+          <Ability key={name} name={name} value={value} />
+        ))}
       </div>
     </div>
   );

@@ -1,17 +1,49 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import Auth from "./Auth";
 import Popup from "./Popup";
+import Character from "./Character";
+import storage from "redux-persist/lib/storage";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from "redux-persist";
 
 // export const reducers = combineReducers({ Auth, Popup });
 
 // const store = configureStore({ reducer: reducers });
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["auth", "character"],
+};
+
+const rootReducer = combineReducers({
+  popup: Popup,
+  auth: Auth,
+  character: Character,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    popup: Popup,
-    auth: Auth,
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => {
+    const middlewares = getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    });
+
+    return middlewares;
   },
 });
+export const persistor = persistStore(store);
 
 export default store;
 

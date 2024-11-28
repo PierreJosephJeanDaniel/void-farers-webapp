@@ -2,6 +2,9 @@ import React from "react";
 import "./CharacterSheet.css";
 import Abilities from "../../Components/Abilities/Abilities";
 import Waits from "../../Components/Waits/Waits";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store";
+import { Ability, CharacterProps } from "../CharacterSelection/types";
 
 interface CharacterSheetProps {
   name: string;
@@ -9,6 +12,13 @@ interface CharacterSheetProps {
 
 const CharacterSheet: React.FC<CharacterSheetProps> = ({ name }) => {
   const [currentTab, setCurrentTab] = React.useState("abilities");
+  const character: CharacterProps = useSelector(
+    (state: RootState) => state.character
+  );
+
+  const abilities: Ability = character.Abilities;
+  const waits: Ability = character.Waits;
+
   const handleClick = (tab: string) => {
     if (tab === currentTab) {
       setCurrentTab("home");
@@ -48,8 +58,8 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ name }) => {
       </div>
       {currentTab === "abilities" && (
         <div className="sheet-body">
-          <Waits />
-          <Abilities />
+          <Waits waits={waits} />
+          <Abilities abilities={abilities} />
         </div>
       )}
     </div>
