@@ -1,0 +1,46 @@
+.arrow-svg .arrow-line1,
+.arrow-svg .arrow-line2,
+.arrow-svg .arrow-line3,
+.arrow-svg .arrow-line4,
+.arrow-svg .arrow-line5,
+.arrow-svg .arrow-line6 {
+  fill: none;
+  stroke: #00ff00;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer;
+}
+
+.arrow-svg:hover {
+  filter: drop-shadow(0 0 10px #00ff00);
+}
+
+.arrow-svg:hover .arrow-line1 {
+  transform: translate(6px, 0px);
+  transition: transform 0.3s ease;
+}
+
+.arrow-svg:hover .arrow-line2 {
+  transform: translate(6px, 0px);
+  transition: transform 0.3s ease;
+}
+
+.arrow-svg:hover .arrow-line3 {
+  transform: translate(12px, 0px);
+  transition: transform 0.3s ease;
+}
+
+.arrow-svg:hover .arrow-line4 {
+  transform: translate(12px, 0px);
+  transition: transform 0.3s ease;
+}
+
+.arrow-line1,
+.arrow-line2,
+.arrow-line3,
+.arrow-line4 {
+  transition: transform 0.3s ease;
+}
+.arrow-svg {
+  padding-left: 3%;
+}

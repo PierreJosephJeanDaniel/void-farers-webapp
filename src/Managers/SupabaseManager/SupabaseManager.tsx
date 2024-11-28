@@ -1,6 +1,7 @@
 import { createClient, SupabaseClient, Session } from "@supabase/supabase-js";
 import store from "../../Store";
 import { login } from "../../Store/Auth";
+import { CharacterProps } from "../../Screens/CharacterSelection/types";
 
 class SupabaseManager {
   public static instance: SupabaseManager;
@@ -59,8 +60,17 @@ class SupabaseManager {
     if (error) throw error;
     return Characters;
   }
+
+  public async selectCharacter(userId: string, name: string) {
+    const { data: character, error } = await this.supabase
+      .from("Characters")
+      .select("*")
+      .eq("User", userId)
+      .eq("Name", name);
+
+    if (error) throw error;
+    return character as CharacterProps[];
+  }
 }
 
 export const supabaseManager = new SupabaseManager();
-// const supabaseManagerInstance = SupabaseManager.get();
-// export default supabaseManagerInstance;

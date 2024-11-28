@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import CharacterSheet from "./Screens/CharacterSheet/CharacterSheet";
 import Starfield from "./Screens/Starfield/Starfield";
-import store from "./Store";
+import store, { persistor } from "./Store";
 import Popup from "./Components/Popup/Popup";
 import { useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
@@ -17,6 +17,7 @@ import Landing from "./Screens/Landing/Landing";
 import "./App.css";
 import CharacterSelection from "./Screens/CharacterSelection/CharacterSelection";
 import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -50,23 +51,25 @@ function App() {
   } else {
     return (
       <Provider store={store}>
-        <Starfield />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Navigate to="/landing" />} />
-            <Route path="/landing" element={<Landing User={session.user} />} />
-            <Route
-              path="/character-selection"
-              element={<CharacterSelection />}
-            />
+        <PersistGate loading={null} persistor={persistor}>
+          <Starfield />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Navigate to="/landing" />} />
+              <Route path="/landing" element={<Landing />} />
+              <Route
+                path="/character-selection"
+                element={<CharacterSelection />}
+              />
 
-            <Route
-              path="/character-sheet"
-              element={<CharacterSheet name={"Bilbo Baggins"} />}
-            />
-          </Routes>
-        </Router>
-        <Popup />
+              <Route
+                path="/character-sheet"
+                element={<CharacterSheet name={"Bilbo Baggins"} />}
+              />
+            </Routes>
+          </Router>
+          <Popup />
+        </PersistGate>
       </Provider>
     );
   }
