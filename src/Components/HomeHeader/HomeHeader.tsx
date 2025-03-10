@@ -1,0 +1,49 @@
+import React from "react";
+import "./HomeHeader.css";
+import { TabOptions } from "../../Settings/TabOptions";
+
+interface HomeHeaderProps {
+  name: string;
+  handleClick: (tab: TabOptions) => void;
+  currentTab: TabOptions;
+}
+
+const HomeHeader: React.FC<HomeHeaderProps> = ({
+  name,
+  handleClick,
+  currentTab,
+}) => {
+  return (
+    <>
+      <div className="character-header">
+        <h1 className="character-name">{name}</h1>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === TabOptions.ABILITIES ? "selected" : ""
+          }`}
+          onClick={() => handleClick(TabOptions.ABILITIES)}
+        >
+          Abilities
+        </p>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === TabOptions.INVENTORY ? "selected" : ""
+          }`}
+          onClick={() => handleClick(TabOptions.INVENTORY)}
+        >
+          Inventory
+        </p>
+        <p
+          className={`character-sheet-header-text ${
+            currentTab === TabOptions.MAP ? "selected" : ""
+          }`}
+          onClick={() => handleClick(TabOptions.MAP)}
+        >
+          Map
+        </p>
+      </div>
+    </>
+  );
+};
+
+export default HomeHeader;

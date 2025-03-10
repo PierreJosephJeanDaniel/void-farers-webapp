@@ -31,7 +31,7 @@ const Popup: React.FC = () => {
           </span>
         </div>
         <div className="popup-body">
-          <span className="typing-effect"> .................{stringValue}</span>
+          <span className="typing-effect"> ........{stringValue}</span>
         </div>
       </div>
     </div>

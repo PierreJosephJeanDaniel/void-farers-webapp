@@ -18,6 +18,7 @@ import "./App.css";
 import CharacterSelection from "./Screens/CharacterSelection/CharacterSelection";
 import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
 import { PersistGate } from "redux-persist/integration/react";
+import Home from "./Screens/Home/Home";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -61,7 +62,7 @@ function App() {
                 path="/character-selection"
                 element={<CharacterSelection />}
               />
-
+              <Route path="/home" element={<Home name={"Bilbo Baggins"} />} />
               <Route
                 path="/character-sheet"
                 element={<CharacterSheet name={"Bilbo Baggins"} />}
