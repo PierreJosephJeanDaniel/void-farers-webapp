@@ -7,6 +7,7 @@ import HomeHeader from "../../Components/HomeHeader/HomeHeader";
 import { TabOptions } from "../../Settings/TabOptions";
 import AbilityContainer from "../../Components/AbilityContainer/AbilityContainer";
 import Inventory from "../../Components/Inventory/Inventory";
+import MapContainer from "../../Components/MapContainer/MapContainer";
 
 const Home: React.FC = () => {
   const [currentTab, setCurrentTab] = React.useState<TabOptions>(
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
       case TabOptions.INVENTORY:
         return <Inventory />;
       case TabOptions.MAP:
-        return <div>Map</div>;
+        return <MapContainer />;
       default:
         return null;
     }
