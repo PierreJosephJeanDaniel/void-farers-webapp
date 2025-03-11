@@ -73,6 +73,10 @@
   opacity: 0;
   transition: opacity 0.3s;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 50px;
 }
 
 .object:hover .hoverbox {
@@ -86,8 +90,12 @@
 
 .object .text {
   cursor: pointer;
-  flex: 0.75;
+  flex: 0.3;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 50px;
 }
 
 @media screen {

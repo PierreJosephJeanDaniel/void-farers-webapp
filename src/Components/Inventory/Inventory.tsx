@@ -1,8 +1,9 @@
 import React from "react";
 import "./Inventory.css";
 import { ObjectProps } from "../../Settings/InventoryObjects";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Store";
+import { openInvPopup, selectObject } from "../../Store/Inventory";
 
 const InvObject: React.FC<ObjectProps> = ({
   name,
@@ -22,9 +23,13 @@ const InvObject: React.FC<ObjectProps> = ({
     rollAssist: rollAssist,
     rollModifier: rollModifier,
   };
+
+  const dispatch = useDispatch();
+
   const handleClick = (object: ObjectProps) => {
+    dispatch(selectObject(object));
+    dispatch(openInvPopup());
     console.log(object);
-    // Open popup with object description
   };
   return (
     <div className="object">

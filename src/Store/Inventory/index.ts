@@ -36,6 +36,7 @@ const inventory = createSlice({
       }
     },
     openInvPopup(state) {
+      console.log("openInvPopup");
       state.isPopupOpen = true;
     },
     closeInvPopup(state) {
