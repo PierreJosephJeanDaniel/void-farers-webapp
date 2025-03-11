@@ -1,10 +1,8 @@
 import React from "react";
 import "./Inventory.css";
-import {
-  ObjectProps,
-  testObjec1,
-  testObjec2,
-} from "../../Settings/InventoryObjects";
+import { ObjectProps } from "../../Settings/InventoryObjects";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store";
 
 const InvObject: React.FC<ObjectProps> = ({
   name,
@@ -15,31 +13,34 @@ const InvObject: React.FC<ObjectProps> = ({
   rollAssist,
   rollModifier,
 }) => {
+  const newObject = {
+    name: name,
+    description: description,
+    effect: effect,
+    isConsumable: isConsumable,
+    quantity: quantity,
+    rollAssist: rollAssist,
+    rollModifier: rollModifier,
+  };
+  const handleClick = (object: ObjectProps) => {
+    console.log(object);
+    // Open popup with object description
+  };
   return (
     <div className="object">
-      <div className="text">-- {name}</div>
+      <div className="text" onClick={() => handleClick(newObject)}>
+        -- {name}
+      </div>
       <div className="hoverbox">{description}</div>
       <div>{quantity}</div>
-      {/* {effect && <div className="object-effect">{effect}</div>}
-      {rollAssist && (
-        <div className="object-roll-assist">Roll Assist: {rollAssist}</div>
-      )}
-      {rollModifier !== null && (
-        <div className="object-roll-modifier">
-          Roll Modifier: {rollModifier > 0 ? `+${rollModifier}` : rollModifier}
-        </div>
-      )}
-      {isConsumable && <div className="object-consumable">Consumable</div>}
-      {quantity !== null && (
-        <div className="object-quantity">Quantity: {quantity}</div>
-      )} */}
     </div>
   );
 };
 
 const Inventory: React.FC = () => {
-  //   const objectList = useSelector((state: RootState) => state.inventory);
-  const objectList = [testObjec1, testObjec2];
+  const objectList: ObjectProps[] = useSelector(
+    (state: RootState) => state.Inventory.objectList
+  );
   return (
     <div className="inventory-container">
       <div className="crt-inventory">

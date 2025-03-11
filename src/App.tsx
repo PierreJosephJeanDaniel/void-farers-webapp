@@ -62,7 +62,7 @@ function App() {
                 path="/character-selection"
                 element={<CharacterSelection />}
               />
-              <Route path="/home" element={<Home name={"Bilbo Baggins"} />} />
+              <Route path="/home" element={<Home />} />
               <Route
                 path="/character-sheet"
                 element={<CharacterSheet name={"Bilbo Baggins"} />}

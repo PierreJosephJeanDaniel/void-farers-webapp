@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import Auth from "./Auth";
 import Popup from "./Popup";
 import Character from "./Character";
+import Inventory from "./Inventory";
 import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
@@ -20,13 +21,14 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "character"],
+  whitelist: ["auth", "character", "inventory"],
 };
 
 const rootReducer = combineReducers({
   popup: Popup,
   auth: Auth,
   character: Character,
+  Inventory: Inventory,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
