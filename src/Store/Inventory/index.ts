@@ -1,9 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit/react";
-import {
-  ObjectProps,
-  testObjec1,
-  testObjec2,
-} from "../../Settings/InventoryObjects";
+import { ObjectProps } from "../../Screens/CharacterSelection/types";
 
 interface InventoryState {
   isPopupOpen: boolean;
@@ -14,7 +10,7 @@ interface InventoryState {
 const initialState: InventoryState = {
   isPopupOpen: false,
   selectedObject: null,
-  objectList: [testObjec1, testObjec1, testObjec2],
+  objectList: [],
 };
 
 const inventory = createSlice({
@@ -35,6 +31,11 @@ const inventory = createSlice({
         }
       }
     },
+    addObjects(state, action: PayloadAction<ObjectProps[]>) {
+      action.payload.forEach((object) => {
+        state.objectList.push(object);
+      });
+    },
     openInvPopup(state) {
       console.log("openInvPopup");
       state.isPopupOpen = true;
@@ -45,7 +46,12 @@ const inventory = createSlice({
   },
 });
 
-export const { selectObject, consumeObject, openInvPopup, closeInvPopup } =
-  inventory.actions;
+export const {
+  selectObject,
+  consumeObject,
+  addObjects,
+  openInvPopup,
+  closeInvPopup,
+} = inventory.actions;
 
 export default inventory.reducer;

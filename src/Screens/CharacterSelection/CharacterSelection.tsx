@@ -8,6 +8,7 @@ import ReturnArrow from "../../Components/ReturnArrow/ReturnArrow";
 import { useNavigate } from "react-router-dom";
 import { CharacterProps } from "./types";
 import { updateCharacter } from "../../Store/Character";
+import { addObjects } from "../../Store/Inventory";
 
 const CharacterSelection: React.FC = () => {
   const [characters, setCharacters] = useState<string[]>([]);
@@ -44,8 +45,10 @@ const CharacterSelection: React.FC = () => {
       await supabaseManager.selectCharacter(userId, name);
 
     const characterPayload: CharacterProps = characterInfo[0];
-    dispatch(updateCharacter(characterPayload));
-    navigate("/character-sheet");
+    const { Inventory, ...restOfCharacterPayload } = characterPayload;
+    dispatch(updateCharacter(restOfCharacterPayload));
+    dispatch(addObjects(Inventory));
+    navigate("/home");
   };
 
   if (loading) {

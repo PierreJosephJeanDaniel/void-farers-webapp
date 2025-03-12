@@ -13,7 +13,7 @@ const Landing: React.FC = () => {
   };
 
   const handleContinue = () => {
-    navigate("/home");
+    navigate("/character-selection");
   };
 
   return (

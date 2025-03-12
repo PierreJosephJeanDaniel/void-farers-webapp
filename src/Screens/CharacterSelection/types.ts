@@ -14,4 +14,15 @@ export interface CharacterProps {
   MaxAegis: number;
   IsDm: boolean;
   User: string;
+  Inventory: ObjectProps[];
+}
+
+export interface ObjectProps {
+  name: string;
+  description: string;
+  effect: string;
+  isConsumable: boolean;
+  quantity: number;
+  rollAssist: string | null;
+  rollModifier: number | null;
 }
