@@ -9,7 +9,7 @@ export interface ObjectProps {
 }
 
 export const testObjec1: ObjectProps = {
-  name: "Test Object",
+  name: "Test Object of amazing power",
   description:
     "This object is a very powerful one, imbued with powers that would scream black magic, if such a thing wasn't complete nonsense.",
   effect: "Adds +5 to all rolls",
