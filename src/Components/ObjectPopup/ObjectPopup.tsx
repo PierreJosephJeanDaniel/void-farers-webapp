@@ -7,7 +7,7 @@ import { closeInvPopup } from "../../Store/Inventory";
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
   const { isPopupOpen, selectedObject } = useSelector(
-    (state: RootState) => state.Inventory
+    (state: RootState) => state.inventory
   );
 
   if (!isPopupOpen) {

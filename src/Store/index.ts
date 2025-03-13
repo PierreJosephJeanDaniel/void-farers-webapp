@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   popup: Popup,
   auth: Auth,
   character: Character,
-  Inventory: Inventory,
+  inventory: Inventory,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

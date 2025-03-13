@@ -13,6 +13,7 @@ const initialState: CharacterProps = {
   Aegis: 0,
   IsDm: false,
   User: "",
+  Inventory: [],
 };
 
 const character: Slice<CharacterProps> = createSlice({
