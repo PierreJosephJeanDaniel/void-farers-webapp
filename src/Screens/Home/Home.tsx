@@ -8,6 +8,7 @@ import { TabOptions } from "../../Settings/TabOptions";
 import AbilityContainer from "../../Components/AbilityContainer/AbilityContainer";
 import Inventory from "../../Components/Inventory/Inventory";
 import MapContainer from "../../Components/MapContainer/MapContainer";
+import MainPage from "../../Components/MainPage/MainPage";
 
 const Home: React.FC = () => {
   const [currentTab, setCurrentTab] = React.useState<TabOptions>(
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
       case TabOptions.MAP:
         return <MapContainer />;
       default:
-        return null;
+        return <MainPage />;
     }
   };
 
