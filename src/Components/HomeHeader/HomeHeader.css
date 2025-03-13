@@ -48,6 +48,7 @@
   font-family: "Venite", sans-serif;
   user-select: none;
   cursor: pointer;
+  user-select: none;
 }
 
 .character-sheet-header-text.selected {

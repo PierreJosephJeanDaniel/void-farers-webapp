@@ -126,8 +126,8 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <div className="main-page-body">
-        <div className="main-page-left">left</div>
-        <div className="main-page-right">right</div>
+        <div className="main-page-left">Drawing board in Progress</div>
+        <div className="main-page-right">Chat construction in progress</div>
       </div>
     </div>
   );

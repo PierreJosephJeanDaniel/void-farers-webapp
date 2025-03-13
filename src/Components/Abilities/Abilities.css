@@ -67,6 +67,7 @@
   transition: all 0.2s ease;
   max-height: 50px;
   overflow: hidden;
+  user-select: none;
 }
 
 .ability:hover {

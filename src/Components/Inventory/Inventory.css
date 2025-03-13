@@ -96,6 +96,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-right: 50px;
+  user-select: none;
 }
 
 @media screen {

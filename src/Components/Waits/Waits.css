@@ -34,6 +34,7 @@
 
 .wait {
   cursor: pointer;
+  user-select: none;
   margin: 5px 0;
   justify-content: space-between;
   display: flex;

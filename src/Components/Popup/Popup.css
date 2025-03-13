@@ -58,6 +58,7 @@
   width: 15%;
   height: 100%;
   cursor: pointer;
+  user-select: none;
   font-size: 35px;
   display: flex;
   align-items: center;
