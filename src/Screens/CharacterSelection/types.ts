@@ -26,3 +26,39 @@ export interface ObjectProps {
   rollAssist: string | null;
   rollModifier: number | null;
 }
+
+export enum WaitsList {
+  WILL = "Will",
+  ATHLETICS = "Athletics",
+  INTELLIGENCE = "Intelligence",
+  TOUGHNESS = "Toughness",
+  SIGHT = "Sight",
+}
+
+export enum AbilitiesList {
+  INSPIRATION = "Inspiration",
+  PSYCHIC = "Psychic",
+  SWEET_TALK = "Sweet Talk",
+  NEGOTIATION = "Negotiation",
+  FORTITUDE = "Fortitude",
+  DODGING = "Dodging",
+  SPRINTING = "Sprinting",
+  CLIMBING = "Climbing",
+  INFILTRATION = "Infiltration",
+  MELEE = "Melee",
+  BALLISTICS = "Ballistics",
+  MEDICINE = "Medicine",
+  ENERGY_WEAPONS = "Energy Weapons",
+  COMPUTERS = "Computers",
+  LANGUAGES = "Languages",
+  WRESTLING = "Wrestling",
+  ENGINE_OPERATIONS = "Engine Operations",
+  THROWING = "Throwing",
+  REPAIRS = "Repairs",
+  HEAVY_WEAPONS = "Heavy Weapons",
+  PILOTING = "Piloting",
+  RIFLES = "Rifles",
+  DOG_FIGHTING = "Dog Fighting",
+  RECON = "Recon",
+  ZERO_G = "Zero-G",
+}

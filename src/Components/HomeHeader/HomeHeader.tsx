@@ -14,35 +14,33 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
   currentTab,
 }) => {
   return (
-    <>
-      <div className="character-header">
-        <h1 className="character-name">{name}</h1>
-        <p
-          className={`character-sheet-header-text ${
-            currentTab === TabOptions.ABILITIES ? "selected" : ""
-          }`}
-          onClick={() => handleClick(TabOptions.ABILITIES)}
-        >
-          Abilities
-        </p>
-        <p
-          className={`character-sheet-header-text ${
-            currentTab === TabOptions.INVENTORY ? "selected" : ""
-          }`}
-          onClick={() => handleClick(TabOptions.INVENTORY)}
-        >
-          Inventory
-        </p>
-        <p
-          className={`character-sheet-header-text ${
-            currentTab === TabOptions.MAP ? "selected" : ""
-          }`}
-          onClick={() => handleClick(TabOptions.MAP)}
-        >
-          Map
-        </p>
-      </div>
-    </>
+    <div className="character-header">
+      <h1 className="character-name">{name}</h1>
+      <p
+        className={`character-sheet-header-text ${
+          currentTab === TabOptions.ABILITIES ? "selected" : ""
+        }`}
+        onClick={() => handleClick(TabOptions.ABILITIES)}
+      >
+        Abilities
+      </p>
+      <p
+        className={`character-sheet-header-text ${
+          currentTab === TabOptions.INVENTORY ? "selected" : ""
+        }`}
+        onClick={() => handleClick(TabOptions.INVENTORY)}
+      >
+        Inventory
+      </p>
+      <p
+        className={`character-sheet-header-text ${
+          currentTab === TabOptions.MAP ? "selected" : ""
+        }`}
+        onClick={() => handleClick(TabOptions.MAP)}
+      >
+        Map
+      </p>
+    </div>
   );
 };
 

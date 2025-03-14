@@ -1,0 +1,88 @@
+html {
+  font-size: 16px; /* Default root font size */
+}
+
+.side-chat {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 99%;
+  align-items: center;
+  border: 0.125rem solid #00ff00; /* 2px */
+  text-shadow: 0 0 0.625rem #00ff00; /* 10px */
+  font-family: "Sevastopol", sans-serif;
+  border-radius: 0.9375rem; /* 15px */
+  font-size: 1.875rem; /* 30px */
+}
+
+.chat-entry {
+  display: flex;
+  flex: 0.25;
+  width: 100%;
+  /* height: 25%; */
+  cursor: pointer;
+  align-items: flex-start;
+  border-top: 0.125rem solid #00ff00; /* 2px */
+  padding: 0.125rem; /* 2px */
+  color: #00ff00;
+  text-shadow: 0 0 0.625rem #00ff00; /* 10px */
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3125rem; /* 5px */
+  margin-top: 0.3125rem; /* 5px */
+  border-top: 0.0625rem solid #eee; /* 1px */
+  word-wrap: break-word;
+  flex-wrap: break-word;
+}
+
+.chat-author {
+  font-weight: bold;
+  color: #cc00ff;
+  text-shadow: 0 0 0.625rem #cc00ff; /* 10px */
+}
+
+.chat-roll-type {
+  font-weight: bold;
+  color: #ff007b;
+  text-shadow: 0 0 0.625rem #ff007b; /* 10px */
+}
+.chat-roll {
+  font-size: 3.75rem; /* 60px */
+  color: #65b4c4;
+  text-shadow: 0 0 0.625rem #65b4c4; /* 10px */
+}
+.roll-value-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem; /* 10px */
+}
+
+.chat-history {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  width: 100%;
+  height: 75%;
+  border-top-left-radius: 0.9375rem; /* 15px */
+  border-top-right-radius: 0.9375rem; /* 15px */
+  text-shadow: 0 0 0.625rem #00ff00; /* 10px */
+  font-family: "Sevastopol", sans-serif;
+  font-size: 1.875rem; /* 30px */
+}
+
+.chat-entry input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  /* background: transparent; */
+  color: #00ff00;
+  font-family: "Sevastopol", sans-serif;
+  font-size: 1.875rem; /* 30px */
+}

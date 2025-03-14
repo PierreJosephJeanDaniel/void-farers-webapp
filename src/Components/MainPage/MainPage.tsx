@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Store";
 import Health from "../Health/Health";
 import Aegis from "../Aegis/Aegis";
+import SideChat from "../SideChat/SideChat";
 
 enum Category {
   HEALTH = 0,
@@ -21,6 +22,10 @@ const MainPage: React.FC = () => {
   );
   const maxAegis: number = useSelector(
     (state: RootState) => state.character.MaxAegis
+  );
+
+  const userName: string = useSelector(
+    (state: RootState) => state.character.Name
   );
 
   const [shield, setShield] = React.useState<number>(
@@ -72,23 +77,6 @@ const MainPage: React.FC = () => {
           {" "}
           <div
             className="change-button"
-            onClick={() => handleClick(Category.SHIELD, "-")}
-          >
-            -
-          </div>
-          <Shield />
-          <div className="subheader-text">{shield}</div>
-          <div
-            className="change-button"
-            onClick={() => handleClick(Category.SHIELD, "+")}
-          >
-            +
-          </div>
-        </div>
-        <div className="shield-container">
-          {" "}
-          <div
-            className="change-button"
             onClick={() => handleClick(Category.HEALTH, "-")}
           >
             -
@@ -102,6 +90,24 @@ const MainPage: React.FC = () => {
             +
           </div>
         </div>
+        <div className="shield-container">
+          {" "}
+          <div
+            className="change-button"
+            onClick={() => handleClick(Category.SHIELD, "-")}
+          >
+            -
+          </div>
+          <Shield />
+          <div className="subheader-text">{shield}</div>
+          <div
+            className="change-button"
+            onClick={() => handleClick(Category.SHIELD, "+")}
+          >
+            +
+          </div>
+        </div>
+
         <div className="shield-container">
           {" "}
           <div
@@ -127,7 +133,7 @@ const MainPage: React.FC = () => {
       </div>
       <div className="main-page-body">
         <div className="main-page-left">Drawing board in Progress</div>
-        <div className="main-page-right">Chat construction in progress</div>
+        <SideChat userName={userName} />
       </div>
     </div>
   );
