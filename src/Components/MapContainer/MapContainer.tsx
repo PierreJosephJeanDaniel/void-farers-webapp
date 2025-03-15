@@ -13,8 +13,21 @@ const MapContainer: React.FC = () => {
     event.preventDefault();
     const { deltaY } = event;
     const zoomFactor = 1.1;
-    const newScale = deltaY > 0 ? scale * zoomFactor : scale / zoomFactor;
+    const newScale = deltaY < 0 ? scale * zoomFactor : scale / zoomFactor;
+
+    // Calculate the center of the map
+    const svgRect = svgRef.current?.getBoundingClientRect();
+    if (!svgRect) return;
+    const svgCenterX = svgRect.width / 2;
+    const svgCenterY = svgRect.height / 2;
+
+    const newTranslate = {
+      x: svgCenterX - (svgCenterX - translate.x) * (newScale / scale),
+      y: svgCenterY - (svgCenterY - translate.y) * (newScale / scale),
+    };
+
     setScale(newScale);
+    setTranslate(newTranslate);
   };
 
   const handleMouseDown = (event: React.MouseEvent) => {
@@ -33,12 +46,12 @@ const MapContainer: React.FC = () => {
 
     const handleMouseMove = (event: MouseEvent) => {
       if (!isDragging) return;
-      const dx = (event.clientX - dragStart.x) / scale;
-      const dy = (event.clientY - dragStart.y) / scale;
-      setTranslate({
+      const dx = event.clientX - dragStart.x;
+      const dy = event.clientY - dragStart.y;
+      setTranslate((translate) => ({
         x: translate.x + dx,
         y: translate.y + dy,
-      });
+      }));
       setDragStart({ x: event.clientX, y: event.clientY });
     };
     window.addEventListener("mousemove", moveListener);
