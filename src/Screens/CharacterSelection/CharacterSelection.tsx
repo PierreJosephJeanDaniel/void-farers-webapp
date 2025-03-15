@@ -8,7 +8,7 @@ import ReturnArrow from "../../Components/ReturnArrow/ReturnArrow";
 import { useNavigate } from "react-router-dom";
 import { CharacterProps } from "./types";
 import { updateCharacter } from "../../Store/Character";
-import { addObjects } from "../../Store/Inventory";
+import { initiateInventory } from "../../Store/Inventory";
 
 const CharacterSelection: React.FC = () => {
   const [characters, setCharacters] = useState<string[]>([]);
@@ -47,7 +47,7 @@ const CharacterSelection: React.FC = () => {
     const characterPayload: CharacterProps = characterInfo[0];
     const { Inventory, ...restOfCharacterPayload } = characterPayload;
     dispatch(updateCharacter(restOfCharacterPayload));
-    dispatch(addObjects(Inventory));
+    dispatch(initiateInventory(Inventory));
     navigate("/home");
   };
 

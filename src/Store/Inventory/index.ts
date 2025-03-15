@@ -31,6 +31,9 @@ const inventory = createSlice({
         }
       }
     },
+    initiateInventory(state, action: PayloadAction<ObjectProps[]>) {
+      state.objectList = action.payload;
+    },
     addObjects(state, action: PayloadAction<ObjectProps[]>) {
       action.payload.forEach((object) => {
         state.objectList.push(object);
@@ -49,6 +52,7 @@ export const {
   selectObject,
   consumeObject,
   addObjects,
+  initiateInventory,
   openInvPopup,
   closeInvPopup,
 } = inventory.actions;
