@@ -13,12 +13,13 @@ const AbilityContainer: React.FC = () => {
     (state: RootState) => state.character
   );
 
+  const userName: string = character.Name;
   const abilities: Ability = character.Abilities;
   const waits: Ability = character.Waits;
   return (
     <div className="sheet-body">
       <Waits waits={waits} />
-      <Abilities abilities={abilities} />
+      <Abilities abilities={abilities} userName={userName} />
     </div>
   );
 };

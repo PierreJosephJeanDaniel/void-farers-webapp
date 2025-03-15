@@ -7,8 +7,8 @@ const Chat: Slice<ChatEntry[]> = createSlice({
   name: "chat",
   initialState: initialState,
   reducers: {
-    updateChat: (_state: ChatEntry[], action: PayloadAction<ChatEntry[]>) => {
-      return action.payload;
+    updateChat: (state: ChatEntry[], action: PayloadAction<ChatEntry>) => {
+      return [action.payload, ...state];
     },
 
     resetChat: () => {

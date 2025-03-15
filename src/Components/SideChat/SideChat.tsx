@@ -70,7 +70,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       const parsedMessage = parseMessage(newMessage);
       const updatedChatHistory = [parsedMessage, ...chatHistory];
       setChatHistory(updatedChatHistory);
-      dispatch(updateChat(updatedChatHistory));
+      dispatch(updateChat(parsedMessage));
       setInputValue("");
     } else if ((event.metaKey || event.ctrlKey) && event.key === "l") {
       event.preventDefault();

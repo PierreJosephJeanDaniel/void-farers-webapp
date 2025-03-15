@@ -2,28 +2,38 @@ import React from "react";
 import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
+import { ChatRoll } from "../SideChat/SideChat";
+import { updateChat } from "../../Store/Chat";
 
 interface AbilityProps {
   name: string;
   value: number;
+  userName: string;
 }
 
 interface Abilities {
   abilities: {
     [key: string]: number;
   };
+  userName: string;
 }
 
-const Ability: React.FC<AbilityProps> = ({ name, value }) => {
+const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
   const dispatch = useDispatch();
   const addedValue: string =
     value >= 0 ? `+ ${value}` : value <= 0 ? `- ${Math.abs(value)}` : "";
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const message: string = `${name}`;
     const randomValue: number = Math.floor(Math.random() * 20) + 1;
     const calculatedValue: number = randomValue + value;
-    dispatch(openPopup({ message: message, value: calculatedValue }));
+    await dispatch(openPopup({ message: message, value: calculatedValue }));
+    const newRollMessage: ChatRoll = {
+      author: userName,
+      rollType: name,
+      rollValue: calculatedValue,
+    };
+    await dispatch(updateChat(newRollMessage));
   };
 
   return (
@@ -34,13 +44,13 @@ const Ability: React.FC<AbilityProps> = ({ name, value }) => {
   );
 };
 
-const Abilities: React.FC<Abilities> = ({ abilities }) => {
+const Abilities: React.FC<Abilities> = ({ abilities, userName }) => {
   return (
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
         {Object.entries(abilities).map(([name, value]) => (
-          <Ability key={name} name={name} value={value} />
+          <Ability key={name} name={name} value={value} userName={userName} />
         ))}
       </div>
     </div>

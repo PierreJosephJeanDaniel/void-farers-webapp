@@ -29,7 +29,6 @@ const InvObject: React.FC<ObjectProps> = ({
   const handleClick = (object: ObjectProps) => {
     dispatch(selectObject(object));
     dispatch(openInvPopup());
-    console.log(object);
   };
   return (
     <div className="object">
