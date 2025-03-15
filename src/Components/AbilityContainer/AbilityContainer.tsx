@@ -18,7 +18,7 @@ const AbilityContainer: React.FC = () => {
   const waits: Ability = character.Waits;
   return (
     <div className="sheet-body">
-      <Waits waits={waits} />
+      <Waits waits={waits} userName={userName} />
       <Abilities abilities={abilities} userName={userName} />
     </div>
   );
