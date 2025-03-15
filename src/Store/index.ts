@@ -3,6 +3,7 @@ import Auth from "./Auth";
 import Popup from "./Popup";
 import Character from "./Character";
 import Inventory from "./Inventory";
+import Chat from "./Chat";
 import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
@@ -21,7 +22,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "character", "inventory"],
+  whitelist: ["auth", "character", "inventory", "chat"],
 };
 
 const rootReducer = combineReducers({
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   auth: Auth,
   character: Character,
   inventory: Inventory,
+  chat: Chat,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

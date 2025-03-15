@@ -5,7 +5,9 @@ import {
   WaitsList,
 } from "../../Screens/CharacterSelection/types";
 import { parseMessage } from "../../Functions/parseMessage";
-
+import { useDispatch, useSelector } from "react-redux";
+import { resetChat, updateChat } from "../../Store/Chat";
+import { RootState } from "../../Store";
 export interface ChatMessage {
   author: string;
   message: string;
@@ -17,7 +19,7 @@ export interface ChatRoll {
   rollValue: number;
 }
 
-type ChatEntry = ChatMessage | ChatRoll;
+export type ChatEntry = ChatMessage | ChatRoll;
 
 interface SideChatProps {
   userName: string;
@@ -51,7 +53,11 @@ const Message: React.FC<ChatEntry> = (props) => {
 };
 
 const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
-  const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
+  const dispatch = useDispatch();
+  const chatHistoryStore: ChatEntry[] = useSelector(
+    (state: RootState) => state.chat
+  );
+  const [chatHistory, setChatHistory] = useState<ChatEntry[]>(chatHistoryStore);
   const [inputValue, setInputValue] = useState<string>("");
   const chatHistoryRef = useRef<HTMLDivElement>(null);
 
@@ -62,8 +68,14 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
         message: inputValue,
       };
       const parsedMessage = parseMessage(newMessage);
-      setChatHistory((prevChatHistory) => [parsedMessage, ...prevChatHistory]);
+      const updatedChatHistory = [parsedMessage, ...chatHistory];
+      setChatHistory(updatedChatHistory);
+      dispatch(updateChat(updatedChatHistory));
       setInputValue("");
+    } else if ((event.metaKey || event.ctrlKey) && event.key === "l") {
+      event.preventDefault();
+      setChatHistory([]);
+      dispatch(resetChat({}));
     }
   };
 
@@ -87,7 +99,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
           />
         </div>
       </div>
