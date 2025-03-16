@@ -1,11 +1,20 @@
 import React from "react";
 import "./MainPage.css";
 import Shield from "../Shield/Shield";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Store";
 import Health from "../Health/Health";
 import Aegis from "../Aegis/Aegis";
 import SideChat from "../SideChat/SideChat";
+import {
+  decreaseAegis,
+  decreaseArmor,
+  decreaseHp,
+  increaseAegis,
+  increaseArmor,
+  increaseHp,
+  updateCharacter,
+} from "../../Store/Character";
 
 enum Category {
   HEALTH = 0,
@@ -14,6 +23,8 @@ enum Category {
 }
 
 const MainPage: React.FC = () => {
+  const dispatch = useDispatch();
+
   const maxHealth: number = useSelector(
     (state: RootState) => state.character.MaxHp
   );
@@ -40,27 +51,46 @@ const MainPage: React.FC = () => {
 
   const handleClick = (category: Category, value: "+" | "-") => {
     switch (category) {
-      case Category.HEALTH:
+      case Category.HEALTH: {
+        let newHealth: number = health;
         if (value === "+" && health < maxHealth) {
-          setHealth(health + 1);
+          newHealth += 1;
+          setHealth(newHealth);
+          dispatch(increaseHp({}));
         } else if (value === "-" && health > 0) {
-          setHealth(health - 1);
+          newHealth -= 1;
+          setHealth(newHealth);
+          dispatch(decreaseHp({}));
         }
         break;
-      case Category.SHIELD:
+      }
+      case Category.SHIELD: {
+        let newShield: number = shield;
         if (value === "+" && shield < maxShield) {
-          setShield(shield + 1);
+          newShield += 1;
+          setShield(newShield);
+          dispatch(increaseArmor({}));
         } else if (value === "-" && shield > 0) {
-          setShield(shield - 1);
+          newShield -= 1;
+          setShield(newShield);
+          dispatch(decreaseArmor({}));
         }
         break;
-      case Category.AEGIS:
+      }
+
+      case Category.AEGIS: {
+        let newAegis: number = aegis;
         if (value === "+" && aegis < maxAegis) {
-          setAegis(aegis + 1);
+          newAegis += 1;
+          setAegis(newAegis);
+          dispatch(increaseAegis({}));
         } else if (value === "-" && aegis > 0) {
-          setAegis(aegis - 1);
+          newAegis -= 1;
+          setAegis(newAegis);
+          dispatch(decreaseAegis({}));
         }
         break;
+      }
     }
   };
 
@@ -68,6 +98,9 @@ const MainPage: React.FC = () => {
     setHealth(maxHealth);
     setShield(maxShield);
     setAegis(maxAegis);
+    dispatch(
+      updateCharacter({ Hp: maxHealth, Armor: maxShield, Aegis: maxAegis })
+    );
   };
 
   return (

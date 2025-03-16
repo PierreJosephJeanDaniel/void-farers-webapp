@@ -1,4 +1,4 @@
-import { PayloadAction, Slice, createSlice } from "@reduxjs/toolkit/react";
+import { PayloadAction, Slice, createSlice } from "@reduxjs/toolkit";
 import {
   ABILITIES,
   AbilitiesList,
@@ -72,48 +72,41 @@ const character: Slice<CharacterProps> = createSlice({
       };
     },
     increaseHp: (state: CharacterProps) => {
-      const newHp: number =
-        state.Hp + 1 <= state.MaxHp ? state.Hp + 1 : state.MaxHp;
       return {
         ...state,
-        hp: newHp,
+        Hp: state.Hp + 1 <= state.MaxHp ? state.Hp + 1 : state.MaxHp,
       };
     },
     decreaseHp: (state: CharacterProps) => {
-      const newHp: number = state.Hp - 1 >= 0 ? state.Hp - 1 : 0;
       return {
         ...state,
-        hp: newHp,
+        Hp: state.Hp - 1 >= 0 ? state.Hp - 1 : 0,
       };
     },
     increaseArmor: (state: CharacterProps) => {
-      const newShield: number =
-        state.Armor + 1 <= state.MaxArmor ? state.Armor + 1 : state.MaxArmor;
       return {
         ...state,
-        armor: newShield,
+        Armor:
+          state.Armor + 1 <= state.MaxArmor ? state.Armor + 1 : state.MaxArmor,
       };
     },
     decreaseArmor: (state: CharacterProps) => {
-      const newShield: number = state.Armor - 1 >= 0 ? state.Armor - 1 : 0;
       return {
         ...state,
-        armor: newShield,
+        Armor: state.Armor - 1 >= 0 ? state.Armor - 1 : 0,
       };
     },
     increaseAegis: (state: CharacterProps) => {
-      const newAegis: number =
-        state.Aegis + 1 <= state.MaxAegis ? state.Aegis + 1 : state.MaxAegis;
       return {
         ...state,
-        aegis: newAegis,
+        Aegis:
+          state.Aegis + 1 <= state.MaxAegis ? state.Aegis + 1 : state.MaxAegis,
       };
     },
     decreaseAegis: (state: CharacterProps) => {
-      const newAegis: number = state.Aegis - 1 >= 0 ? state.Aegis - 1 : 0;
       return {
         ...state,
-        armor: newAegis,
+        Aegis: state.Aegis - 1 >= 0 ? state.Aegis - 1 : 0,
       };
     },
   },
