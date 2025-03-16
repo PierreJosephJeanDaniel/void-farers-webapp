@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
 import { ChatRoll } from "../SideChat/SideChat";
 import { updateChat } from "../../Store/Chat";
+import { AbilityType } from "../../Screens/CharacterSelection/types";
 
 interface AbilityProps {
   name: string;
@@ -12,16 +13,14 @@ interface AbilityProps {
 }
 
 interface Abilities {
-  abilities: {
-    [key: string]: number;
-  };
+  abilities: AbilityType;
   userName: string;
 }
 
 const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
   const dispatch = useDispatch();
   const addedValue: string =
-    value >= 0 ? `+ ${value}` : value <= 0 ? `- ${Math.abs(value)}` : "";
+    value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
   const handleClick = async () => {
     const message: string = `${name}`;

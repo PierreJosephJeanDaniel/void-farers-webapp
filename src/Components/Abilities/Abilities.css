@@ -50,6 +50,7 @@
 }
 
 .ability {
+  display: flex;
   cursor: pointer;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
@@ -68,6 +69,7 @@
   max-height: 50px;
   overflow: hidden;
   user-select: none;
+  flex-direction: row;
 }
 
 .ability:hover {

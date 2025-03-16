@@ -90,7 +90,7 @@
 
 .object .text {
   cursor: pointer;
-  flex: 0.3;
+  flex: 0.5;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;

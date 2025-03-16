@@ -1,6 +1,6 @@
 import React from "react";
 import "./Waits.css";
-import { Ability } from "../../Screens/CharacterSelection/types";
+import { WaitsType } from "../../Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
 import { updateChat } from "../../Store/Chat";
@@ -13,7 +13,7 @@ interface WaitProps {
 }
 
 interface WaitsProps {
-  waits: Ability;
+  waits: WaitsType;
   userName: string;
 }
 
@@ -52,7 +52,12 @@ const Waits: React.FC<WaitsProps> = ({ waits, userName }) => {
     <div className="crt-waits">
       <h1>W.A.I.T.S</h1>
       {Object.entries(waits).map(([name, value]) => (
-        <Wait key={name} name={name} value={value} userName={userName} />
+        <Wait
+          key={name}
+          name={name}
+          value={value as number}
+          userName={userName}
+        />
       ))}
     </div>
   );
