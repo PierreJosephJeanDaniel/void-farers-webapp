@@ -4,10 +4,24 @@
   max-height: 75%;
   display: inline-block;
   vertical-align: middle;
+  user-select: none;
 }
 /* Stronger glow effect */
 .save-icon:hover {
   cursor: pointer;
   filter: drop-shadow(0 0 3px rgba(0, 255, 0, 0.8))
     drop-shadow(0 0 6px rgba(0, 255, 0, 0.6));
+}
+
+/* Active state (when changes are made) */
+.save-icon.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.save-icon.inactive {
+  opacity: 0.3;
+  cursor: default;
+  stroke: #666; /* Dimmed color */
+  pointer-events: none; /* Disables click events */
 }

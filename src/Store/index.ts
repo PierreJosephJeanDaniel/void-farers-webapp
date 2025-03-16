@@ -15,6 +15,7 @@ import {
   persistReducer,
   persistStore,
 } from "redux-persist";
+import ChangeTracker from "./ChangeTracker";
 
 // export const reducers = combineReducers({ Auth, Popup });
 
@@ -22,7 +23,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "character", "inventory", "chat"],
+  whitelist: ["auth", "character", "inventory", "chat", "changeTracker"],
 };
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   character: Character,
   inventory: Inventory,
   chat: Chat,
+  changeTracker: ChangeTracker,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

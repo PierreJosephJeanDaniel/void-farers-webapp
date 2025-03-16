@@ -15,6 +15,7 @@ import {
   increaseHp,
   updateCharacter,
 } from "../../Store/Character";
+import { setTracker } from "../../Store/ChangeTracker";
 
 enum Category {
   HEALTH = 0,
@@ -57,10 +58,12 @@ const MainPage: React.FC = () => {
           newHealth += 1;
           setHealth(newHealth);
           dispatch(increaseHp({}));
+          dispatch(setTracker(true));
         } else if (value === "-" && health > 0) {
           newHealth -= 1;
           setHealth(newHealth);
           dispatch(decreaseHp({}));
+          dispatch(setTracker(true));
         }
         break;
       }
@@ -70,10 +73,12 @@ const MainPage: React.FC = () => {
           newShield += 1;
           setShield(newShield);
           dispatch(increaseArmor({}));
+          dispatch(setTracker(true));
         } else if (value === "-" && shield > 0) {
           newShield -= 1;
           setShield(newShield);
           dispatch(decreaseArmor({}));
+          dispatch(setTracker(true));
         }
         break;
       }
@@ -84,10 +89,12 @@ const MainPage: React.FC = () => {
           newAegis += 1;
           setAegis(newAegis);
           dispatch(increaseAegis({}));
+          dispatch(setTracker(true));
         } else if (value === "-" && aegis > 0) {
           newAegis -= 1;
           setAegis(newAegis);
           dispatch(decreaseAegis({}));
+          dispatch(setTracker(true));
         }
         break;
       }
@@ -101,6 +108,7 @@ const MainPage: React.FC = () => {
     dispatch(
       updateCharacter({ Hp: maxHealth, Armor: maxShield, Aegis: maxAegis })
     );
+    dispatch(setTracker(true));
   };
 
   return (

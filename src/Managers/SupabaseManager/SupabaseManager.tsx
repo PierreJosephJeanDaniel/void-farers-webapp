@@ -71,6 +71,22 @@ class SupabaseManager {
     if (error) throw error;
     return character as CharacterProps[];
   }
+
+  public async updateCharacter(character: CharacterProps) {
+    const { data: Characters, error } = await this.supabase
+      .from("Characters")
+      .update({
+        Hp: character.Hp,
+        Armor: character.Armor,
+        Aegis: character.Aegis,
+      })
+      .eq("Name", character.Name)
+      .eq("User", character.User)
+      .select();
+
+    if (error) throw error;
+    return Characters;
+  }
 }
 
 export const supabaseManager = new SupabaseManager();
