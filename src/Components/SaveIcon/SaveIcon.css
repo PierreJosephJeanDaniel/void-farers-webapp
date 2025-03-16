@@ -1,0 +1,13 @@
+.save-icon {
+  height: 75%;
+  width: auto;
+  max-height: 75%;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* Stronger glow effect */
+.save-icon:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 3px rgba(0, 255, 0, 0.8))
+    drop-shadow(0 0 6px rgba(0, 255, 0, 0.6));
+}
