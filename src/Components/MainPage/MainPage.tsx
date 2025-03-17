@@ -16,6 +16,7 @@ import {
   updateCharacter,
 } from "../../Store/Character";
 import { setTracker } from "../../Store/ChangeTracker";
+import WorkInProgress from "../WorkInProgress/WorkInProgress";
 
 enum Category {
   HEALTH = 0,
@@ -173,7 +174,9 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <div className="main-page-body">
-        <div className="main-page-left">Drawing board in Progress</div>
+        <div className="main-page-left">
+          <WorkInProgress />
+        </div>
         <SideChat userName={userName} />
       </div>
     </div>
