@@ -26,9 +26,11 @@ export interface ObjectProps {
   description: string;
   effect: string;
   isConsumable: boolean;
+  onConsume: string | null;
   quantity: number;
   rollAssist: WaitsList | AbilitiesList | null | "all";
   rollModifier: number | null;
+  isActive: boolean;
 }
 
 export const WAITS = {
@@ -67,54 +69,56 @@ export const ABILITIES = {
   ZERO_G: "Zero-G",
 } as const;
 
+export const Consumables = {
+  HEALTH: "Health",
+  ARMOR: "Armor",
+  AEGIS: "Aegis",
+} as const;
+
+export const PASSIVE_EFFECTS = {
+  HEALTH: "Health",
+  ARMOR: "Armor",
+  AEGIS: "Aegis",
+} as const;
+
 export type ObjectValues<T> = T[keyof T];
 export type AbilitiesList = ObjectValues<typeof ABILITIES>;
 export type WaitsList = ObjectValues<typeof WAITS>;
 
 export const testInventory: ObjectProps[] = [
   {
-    name: "test",
-    description: "test",
-    effect: "test",
+    name: "Pendant of the Master of None",
+    description:
+      "Upon wearing this pendant, you realize that your ADHD is actually a superpower.",
+    effect: "+1 to all rolls",
     isConsumable: false,
+    onConsume: null,
     quantity: 1,
     rollAssist: "all",
-    rollModifier: 3,
+    rollModifier: 1,
+    isActive: true,
   },
   {
-    name: "test2",
-    description: "test2",
-    effect: "test2",
+    name: "Mind Fortress",
+    description: "You are one with yourself, one with the universe.",
+    effect: "+5 to Will",
     isConsumable: false,
+    onConsume: null,
     quantity: 1,
     rollAssist: WAITS.WILL,
     rollModifier: 5,
+    isActive: true,
   },
   {
-    name: "test2",
-    description: "test2",
-    effect: "test2",
-    isConsumable: false,
-    quantity: 1,
-    rollAssist: ABILITIES.INSPIRATION,
-    rollModifier: 5,
-  },
-  {
-    name: "test2",
-    description: "test2",
-    effect: "test2",
-    isConsumable: false,
-    quantity: 1,
-    rollAssist: ABILITIES.PILOTING,
-    rollModifier: 1,
-  },
-  {
-    name: "test2",
-    description: "test2",
-    effect: "test2",
-    isConsumable: false,
-    quantity: 1,
-    rollAssist: ABILITIES.FORTITUDE,
-    rollModifier: 2,
+    name: "StimulHealth",
+    description:
+      "After a shot of this you feel like a butterfly, ready to fly again. Become addicted and you must just live as long...",
+    effect: "Restores health to its maximum",
+    isConsumable: true,
+    onConsume: "Health",
+    quantity: 3,
+    rollAssist: null,
+    rollModifier: null,
+    isActive: true,
   },
 ];

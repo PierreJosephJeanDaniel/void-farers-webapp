@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Store";
 import "./ObjectPopup.css";
-import { closeInvPopup } from "../../Store/Inventory";
+import { closeInvPopup, consumeObject } from "../../Store/Inventory";
+import { ObjectProps } from "../../Screens/CharacterSelection/types";
 
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const Popup: React.FC = () => {
   }
 
   const handleClose = () => {
+    dispatch(closeInvPopup());
+  };
+
+  const handleUse = (selectedObject: ObjectProps) => {
+    dispatch(consumeObject(selectedObject));
     dispatch(closeInvPopup());
   };
 
@@ -39,6 +45,16 @@ const Popup: React.FC = () => {
             <div className="body-subtitle">Effect:</div>
             <div className="body-content">{selectedObject?.effect}</div>
           </div>
+          {selectedObject?.isConsumable && (
+            <div className="use-button-container">
+              <div
+                className="use-button"
+                onClick={() => handleUse(selectedObject)}
+              >
+                Use
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

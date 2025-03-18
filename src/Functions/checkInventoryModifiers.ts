@@ -31,7 +31,6 @@ export const checkInventoryModifiers = (
 
     if (object.rollAssist) {
       const key = object.rollAssist as string;
-
       if (
         (listType === "abilities" &&
           Object.values(ABILITIES).includes(key as AbilitiesList)) ||

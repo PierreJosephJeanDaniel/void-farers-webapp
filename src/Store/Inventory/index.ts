@@ -20,15 +20,20 @@ const inventory = createSlice({
     selectObject(state, action: PayloadAction<ObjectProps>) {
       state.selectedObject = action.payload;
     },
-    consumeObject(state) {
-      if (state.selectedObject) {
-        state.selectedObject.quantity -= 1;
-        if (state.selectedObject.quantity === 0) {
-          state.objectList = state.objectList.filter(
-            (object) => object !== state.selectedObject
-          );
-          state.selectedObject = null;
-        }
+    consumeObject(state, action: PayloadAction<ObjectProps>) {
+      state.selectedObject = action.payload;
+      state.selectedObject.quantity -= 1;
+      if (state.selectedObject.quantity <= 0) {
+        state.objectList = state.objectList.filter(
+          (object) => object.name !== state.selectedObject?.name
+        );
+      } else {
+        state.objectList = state.objectList.map((object) => {
+          if (object.name === state.selectedObject?.name) {
+            return state.selectedObject;
+          }
+          return object;
+        });
       }
     },
     initiateInventory(state, action: PayloadAction<ObjectProps[]>) {

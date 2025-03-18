@@ -10,18 +10,22 @@ const InvObject: React.FC<ObjectProps> = ({
   description,
   effect,
   isConsumable,
+  onConsume,
   quantity,
   rollAssist,
   rollModifier,
+  isActive,
 }) => {
   const newObject = {
     name: name,
     description: description,
     effect: effect,
     isConsumable: isConsumable,
+    onConsume: onConsume,
     quantity: quantity,
     rollAssist: rollAssist,
     rollModifier: rollModifier,
+    isActive: isActive,
   };
 
   const dispatch = useDispatch();
@@ -55,9 +59,11 @@ const Inventory: React.FC = () => {
             description={value.description}
             effect={value.effect}
             isConsumable={value.isConsumable}
+            onConsume={value.onConsume}
             quantity={value.quantity}
             rollAssist={value.rollAssist}
             rollModifier={value.rollModifier}
+            isActive={value.isActive}
           />
         ))}
       </div>
