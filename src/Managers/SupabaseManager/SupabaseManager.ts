@@ -56,18 +56,13 @@ class SupabaseManager {
         throw error;
       }
 
-      console.log("Sign in response:", data);
-
       if (!data.user || !data.session) {
         console.warn("Sign in successful but incomplete data returned");
         return null;
       }
 
-      // Manually extract user data
-      const userName = data.user?.email ?? "";
-      const userId = data.user?.id ?? "";
-
-      console.log("Sign in successful:", { userName, userId });
+      const userName: string = data.user?.email ?? "";
+      const userId: string = data.user?.id ?? "";
 
       // Add this data to Redux store regardless of session storage
       store.dispatch(login({ userName, userId }));
@@ -80,18 +75,13 @@ class SupabaseManager {
   }
 
   public async checkAndRestoreSession() {
-    // Try retrieving the session
-    const session = await this.getSession();
+    const session: Session | null = await this.getSession();
 
-    // If we don't have a valid session in storage
     if (!session || !session.user) {
-      // Check if we have the data in Redux store
       const auth = store.getState().auth;
 
       if (auth.userName && auth.userId) {
-        console.log("Found auth data in store but not in session");
-        // We have data in Redux but not in session, which might indicate incognito mode
-        // You could implement additional validation here if needed
+        console.warn("Found auth data in store but not in session");
       } else {
         console.warn("No authentication data found");
       }
