@@ -8,6 +8,13 @@ import {
 
 type ListType = "abilities" | "waits";
 
+/**
+ * Check the inventory for objects that modify abilities or waits and update the record of `AbilitiesList` or `WaitsList` with their modifiers. If an object has a `rollAssist` of "all", it will apply its modifier to all abilities or waits. If an object has a `rollAssist` for a valid `ability` or `waits`, which is so far absent from the list, it will add said ability or waits to the record, with a modifier of `rollModifier - 1`.
+ * @param {Record<AbilitiesList, number> | Record<WaitsList, number>} props - The record of abilities or waits with their initial modifiers as numbers
+ * @param {ObjectProps[]} inventory  - The inventory of objects to check for modifiers
+ * @param {ListType} listType - The type of list to check for modifiers
+ * @returns {Record<AbilitiesList, number> | Record<WaitsList, number>} The updated record of abilities or waits with their modifiers as numbers
+ */
 export const checkInventoryModifiers = (
   props: Record<AbilitiesList, number> | Record<WaitsList, number>,
   inventory: ObjectProps[],

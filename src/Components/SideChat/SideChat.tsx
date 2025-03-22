@@ -17,6 +17,7 @@ export interface ChatRoll {
   author: string;
   rollType: WaitsList | AbilitiesList | string;
   rollValue: number;
+  critical?: "success" | "fail";
 }
 
 export type ChatEntry = ChatMessage | ChatRoll;
@@ -45,7 +46,17 @@ const Message: React.FC<ChatEntry> = (props) => {
           rolled for <span className="chat-roll-type">{props.rollType}</span>:
         </span>
         <div className="roll-value-container">
-          <span className="chat-roll">{props.rollValue}</span>
+          <span
+            className={
+              props.critical
+                ? props.critical === "success"
+                  ? "chat-roll-success"
+                  : "chat-roll-fail"
+                : "chat-roll"
+            }
+          >
+            {props.rollValue}
+          </span>
         </div>
       </div>
     );

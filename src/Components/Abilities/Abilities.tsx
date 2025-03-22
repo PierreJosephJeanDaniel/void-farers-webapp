@@ -24,13 +24,21 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
 
   const handleClick = async () => {
     const message: string = `${name}`;
+    let critical: undefined | "success" | "fail" = undefined;
     const randomValue: number = Math.floor(Math.random() * 20) + 1;
+    if (randomValue === 20) {
+      critical = "success";
+    }
+    if (randomValue === 1) {
+      critical = "fail";
+    }
     const calculatedValue: number = randomValue + value;
     await dispatch(openPopup({ message: message, value: calculatedValue }));
     const newRollMessage: ChatRoll = {
       author: userName,
       rollType: name,
       rollValue: calculatedValue,
+      critical: critical,
     };
     await dispatch(updateChat(newRollMessage));
   };
