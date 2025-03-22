@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 93vh; /* 100vh - 7vh for the header */
   width: 100vw;
   background-color: rgba(26, 26, 81, 0.01);
   box-sizing: border-box;
