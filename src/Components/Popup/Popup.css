@@ -69,6 +69,16 @@
   /* background-color: aqua; */
 }
 
+.roll-fail {
+  color: tomato;
+  text-shadow: 0 0 0.625rem tomato; /* 10px */
+}
+
+.roll-success {
+  color: #457dff;
+  text-shadow: 0 0 0.625rem #457dff; /* 10px */
+}
+
 .close:hover {
   background-color: rgba(255, 0, 0, 0.2);
 }
@@ -96,7 +106,7 @@
   overflow: hidden;
   white-space: nowrap;
   border-right: 0.15em solid black;
-  animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
+  animation: typing 1s steps(20, end), blink-caret 0.75s step-end infinite;
   width: fit-content;
 }
 

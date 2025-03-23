@@ -57,8 +57,8 @@ html {
 
 .chat-roll-fail {
   font-size: 3.75rem; /* 60px */
-  color: #cb250f;
-  text-shadow: 0 0 0.625rem #cb250f; /* 10px */
+  color: tomato;
+  text-shadow: 0 0 0.625rem tomato; /* 10px */
 }
 
 .chat-roll-success {

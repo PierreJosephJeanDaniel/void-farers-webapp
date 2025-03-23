@@ -37,7 +37,13 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
       critical = "fail";
     }
     const calculatedValue: number = randomValue + modifier;
-    await dispatch(openPopup({ message: message, value: calculatedValue }));
+    dispatch(
+      openPopup({
+        message: message,
+        value: calculatedValue,
+        critical: critical,
+      })
+    );
     const newRollMessage: ChatRoll = {
       author: userName,
       rollType: name,

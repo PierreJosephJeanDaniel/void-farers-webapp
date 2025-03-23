@@ -33,7 +33,13 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
       critical = "fail";
     }
     const calculatedValue: number = randomValue + value;
-    await dispatch(openPopup({ message: message, value: calculatedValue }));
+    await dispatch(
+      openPopup({
+        message: message,
+        value: calculatedValue,
+        critical: critical,
+      })
+    );
     const newRollMessage: ChatRoll = {
       author: userName,
       rollType: name,
