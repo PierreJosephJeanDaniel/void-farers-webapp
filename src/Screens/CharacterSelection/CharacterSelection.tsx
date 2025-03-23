@@ -44,7 +44,7 @@ const CharacterSelection: React.FC = () => {
    * Fetches the information of the character whose name is passed as an argument
    * and updates the character and inventory state with the fetched data.
    * Then navigates to the home screen.
-   * @param name {string} - The name of the character selected
+   * @param {string} name The name of the character selected
    */
   const handleCharacterSelected = async (name: string) => {
     const characterInfo: CharacterProps[] =
@@ -68,7 +68,7 @@ const CharacterSelection: React.FC = () => {
         <Airlock onClick={handleLogout} />
       </header>
       <div className="title">Available characters</div>
-      <div className="body">
+      <div className="body-container">
         {characters.map((name, index) => (
           <div
             className="character"

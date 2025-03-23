@@ -26,9 +26,14 @@
   color: #00ff00;
 }
 
-.body {
+.body-container {
   display: flex;
+  width: 50vw;
+  height: 50vh;
+  justify-content: space-evenly;
   justify-content: center;
+  align-items: center;
+  gap: 30px;
   font-family: "Sevastopol", sans-serif;
   color: #00ff00;
 }
