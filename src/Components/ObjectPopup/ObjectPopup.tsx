@@ -4,6 +4,7 @@ import { RootState } from "../../Store";
 import "./ObjectPopup.css";
 import { closeInvPopup, consumeObject } from "../../Store/Inventory";
 import { ObjectProps } from "../../Screens/CharacterSelection/types";
+import { setTracker } from "../../Store/ChangeTracker";
 
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Popup: React.FC = () => {
   const handleUse = (selectedObject: ObjectProps) => {
     dispatch(consumeObject(selectedObject));
     dispatch(closeInvPopup());
+    dispatch(setTracker(true));
   };
 
   return (
