@@ -71,6 +71,9 @@ const Message: React.FC<ChatEntry> = (props) => {
 const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const dispatch = useDispatch();
 
+  const chatHistoryStore: ChatEntry[] = useSelector(
+    (state: RootState) => state.chat.chatEntries
+  );
   const cmdHistoryStore: string[] = useSelector(
     (state: RootState) => state.chat.cmdHistory
   );
@@ -78,7 +81,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
     (state: RootState) => state.chat.maxHistory
   );
 
-  const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
+  const [chatHistory, setChatHistory] = useState<ChatEntry[]>(chatHistoryStore);
   const [inputValue, setInputValue] = useState<string>("");
   const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);

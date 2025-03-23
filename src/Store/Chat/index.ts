@@ -20,7 +20,7 @@ const Chat: Slice<ChatProps> = createSlice({
     updateChat: (state: ChatProps, action: PayloadAction<ChatEntry>) => {
       return {
         ...state,
-        chatEntries: [...state.chatEntries, action.payload],
+        chatEntries: [action.payload, ...state.chatEntries],
       };
     },
     updateChatCmdHistory: (

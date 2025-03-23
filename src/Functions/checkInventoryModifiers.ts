@@ -29,9 +29,9 @@ export const checkInventoryModifiers = (
       : ({ ...props } as Record<WaitsList, number>);
 
   inventory.forEach((object) => {
-    if (object.rollModifier === null || object.rollModifier === undefined) {
+    if (object.rollAssist && object.rollModifier === undefined) {
       console.error(
-        `Error: object ${object.name} has a rollModifier but no value`
+        `Error: object ${object.name} has a rollAssist but no rollModifier value`
       );
       return;
     }
@@ -68,9 +68,9 @@ export const checkInventoryModifiers = (
   });
 
   inventory.forEach((object) => {
-    if (object.rollModifier === null || object.rollModifier === undefined) {
+    if (object.rollAssist && object.rollModifier === undefined) {
       console.error(
-        `Error: object ${object.name} has a rollModifier but no value`
+        `Error: object ${object.name} has a rollAssist but no rollModifier value`
       );
       return;
     }
