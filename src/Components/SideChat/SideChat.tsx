@@ -6,7 +6,12 @@ import {
 } from "../../Screens/CharacterSelection/types";
 import { parseMessage } from "../../Functions/parseMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { resetChat, updateChat } from "../../Store/Chat";
+import {
+  resetChat,
+  resetChatCmdHistory,
+  updateChat,
+  updateChatCmdHistory,
+} from "../../Store/Chat";
 import { RootState } from "../../Store";
 export interface ChatMessage {
   author: string;
@@ -65,11 +70,17 @@ const Message: React.FC<ChatEntry> = (props) => {
 
 const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const dispatch = useDispatch();
-  const chatHistoryStore: ChatEntry[] = useSelector(
-    (state: RootState) => state.chat
+
+  const cmdHistoryStore: string[] = useSelector(
+    (state: RootState) => state.chat.cmdHistory
   );
-  const [chatHistory, setChatHistory] = useState<ChatEntry[]>(chatHistoryStore);
+  const maxHistory: number = useSelector(
+    (state: RootState) => state.chat.maxHistory
+  );
+
+  const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
+  const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -80,13 +91,44 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       };
       const parsedMessage = parseMessage(newMessage);
       const updatedChatHistory = [parsedMessage, ...chatHistory];
+      let cmdHistoryList: string[] = cmdHistoryStore;
+      const lastRegisteredCmd: string = cmdHistoryList ? cmdHistoryList[0] : "";
+      if (lastRegisteredCmd !== inputValue) {
+        if (
+          cmdHistoryList !== undefined &&
+          cmdHistoryList.length >= maxHistory
+        ) {
+          cmdHistoryList = cmdHistoryList.slice(0, cmdHistoryList.length - 1);
+        }
+        const updatedCmdHistory: string[] = cmdHistoryList
+          ? [inputValue, ...cmdHistoryList]
+          : [inputValue];
+        dispatch(updateChatCmdHistory(updatedCmdHistory));
+      }
       setChatHistory(updatedChatHistory);
       dispatch(updateChat(parsedMessage));
+      setHistoryIndex(0);
       setInputValue("");
     } else if ((event.metaKey || event.ctrlKey) && event.key === "l") {
       event.preventDefault();
       setChatHistory([]);
       dispatch(resetChat({}));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (historyIndex >= cmdHistoryStore.length) {
+        setHistoryIndex(0);
+      }
+      setInputValue(cmdHistoryStore[historyIndex]);
+      setHistoryIndex(historyIndex + 1);
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+
+      if (historyIndex > 0) {
+        setInputValue(cmdHistoryStore[historyIndex - 1]);
+        setHistoryIndex(historyIndex - 1);
+      }
+    } else if ((event.metaKey || event.ctrlKey) && event.key === "e") {
+      dispatch(resetChatCmdHistory({}));
     }
   };
 
