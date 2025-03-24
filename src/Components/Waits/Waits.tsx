@@ -11,14 +11,16 @@ interface WaitProps {
   name: string;
   value: number;
   userName: string;
+  colorId: string;
 }
 
 interface WaitsProps {
   waits: WaitsType;
   userName: string;
+  colorId: string;
 }
 
-const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
+const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
   const dispatch = useDispatch();
   const socket = useSocket();
   const modifier: number = value - 5;
@@ -51,6 +53,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
       rollType: name,
       rollValue: calculatedValue,
       critical: critical,
+      colorId: colorId,
     };
     if (socket) {
       socket.emit("sendMessage", newRollMessage);
@@ -65,7 +68,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
   );
 };
 
-const Waits: React.FC<WaitsProps> = ({ waits, userName }) => {
+const Waits: React.FC<WaitsProps> = ({ waits, userName, colorId }) => {
   return (
     <div className="crt-waits">
       <h1>W.A.I.T.S</h1>
@@ -75,6 +78,7 @@ const Waits: React.FC<WaitsProps> = ({ waits, userName }) => {
           name={name}
           value={value as number}
           userName={userName}
+          colorId={colorId}
         />
       ))}
     </div>

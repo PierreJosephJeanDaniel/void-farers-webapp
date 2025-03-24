@@ -21,6 +21,7 @@ Make sure that any change in the `ChatMessage`, `ChatRoll`, `ChatEntry`, `WaitsL
 export interface ChatMessage {
   author: string;
   message: string;
+  colorId: string;
 }
 
 export interface ChatRoll {
@@ -28,12 +29,14 @@ export interface ChatRoll {
   rollType: WaitsList | AbilitiesList | string;
   rollValue: number;
   critical?: "success" | "fail";
+  colorId: string;
 }
 
 export type ChatEntry = ChatMessage | ChatRoll;
 
 interface SideChatProps {
   userName: string;
+  colorId: string;
 }
 
 const isChatMessage = (entry: ChatEntry): entry is ChatMessage => {
@@ -44,14 +47,30 @@ const Message: React.FC<ChatEntry> = (props) => {
   if (isChatMessage(props)) {
     return (
       <div className="chat-message">
-        <span className="chat-author">{props.author}: </span>
+        <span
+          className="chat-author"
+          style={{
+            color: props.colorId,
+            textShadow: `0 0 0.625rem ${props.colorId}`,
+          }}
+        >
+          {props.author}:{" "}
+        </span>
         {props.message}
       </div>
     );
   } else {
     return (
       <div className="chat-message">
-        <span className="chat-author">{props.author}: </span>
+        <span
+          className="chat-author"
+          style={{
+            color: props.colorId,
+            textShadow: `0 0 0.625rem ${props.colorId}`,
+          }}
+        >
+          {props.author}:{" "}
+        </span>
         <span>
           rolled for <span className="chat-roll-type">{props.rollType}</span>:
         </span>
@@ -99,6 +118,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       const newMessage: ChatMessage = {
         author: props.userName,
         message: inputValue,
+        colorId: props.colorId,
       };
       const parsedMessage: ChatEntry = parseMessage(newMessage);
       let cmdHistoryList: string[] = cmdHistoryStore;

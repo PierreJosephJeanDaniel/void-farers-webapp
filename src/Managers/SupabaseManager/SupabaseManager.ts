@@ -64,7 +64,6 @@ class SupabaseManager {
       const userName: string = data.user?.email ?? "";
       const userId: string = data.user?.id ?? "";
 
-      // Add this data to Redux store regardless of session storage
       store.dispatch(login({ userName, userId }));
 
       return data.session;

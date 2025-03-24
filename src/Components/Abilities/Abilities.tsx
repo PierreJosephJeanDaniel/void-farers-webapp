@@ -11,14 +11,21 @@ interface AbilityProps {
   name: string;
   value: number;
   userName: string;
+  colorId: string;
 }
 
 interface Abilities {
   abilities: AbilityType;
   userName: string;
+  colorId: string;
 }
 
-const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
+const Ability: React.FC<AbilityProps> = ({
+  name,
+  value,
+  userName,
+  colorId,
+}) => {
   const dispatch = useDispatch();
   const socket = useSocket();
   const addedValue: string =
@@ -47,6 +54,7 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
       rollType: name,
       rollValue: calculatedValue,
       critical: critical,
+      colorId: colorId,
     };
     if (socket) {
       socket.emit("sendMessage", newRollMessage);
@@ -62,13 +70,19 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
   );
 };
 
-const Abilities: React.FC<Abilities> = ({ abilities, userName }) => {
+const Abilities: React.FC<Abilities> = ({ abilities, userName, colorId }) => {
   return (
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
         {Object.entries(abilities).map(([name, value]) => (
-          <Ability key={name} name={name} value={value} userName={userName} />
+          <Ability
+            key={name}
+            name={name}
+            value={value}
+            userName={userName}
+            colorId={colorId}
+          />
         ))}
       </div>
     </div>

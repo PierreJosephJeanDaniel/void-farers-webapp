@@ -41,6 +41,10 @@ const MainPage: React.FC = () => {
     (state: RootState) => state.character.Name
   );
 
+  const colorId: string = useSelector(
+    (state: RootState) => state.character.ColorId
+  );
+
   const [shield, setShield] = React.useState<number>(
     useSelector((state: RootState) => state.character.Armor)
   );
@@ -177,7 +181,7 @@ const MainPage: React.FC = () => {
         <div className="main-page-left">
           <WorkInProgress />
         </div>
-        <SideChat userName={userName} />
+        <SideChat userName={userName} colorId={colorId} />
       </div>
     </div>
   );

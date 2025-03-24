@@ -19,6 +19,7 @@ const AbilityContainer: React.FC = () => {
     (state: RootState) => state.inventory.objectList
   );
   const userName: string = character.Name;
+  const colorId: string = character.ColorId;
   const abilities: Record<AbilitiesList, number> = character.Abilities;
   const waits: Record<WaitsList, number> = character.Waits;
   const newWaits: Record<WaitsList, number> = checkInventoryModifiers(
@@ -33,8 +34,12 @@ const AbilityContainer: React.FC = () => {
   ) as Record<AbilitiesList, number>;
   return (
     <div className="sheet-body">
-      <Waits waits={newWaits} userName={userName} />
-      <Abilities abilities={newAbilities} userName={userName} />
+      <Waits waits={newWaits} userName={userName} colorId={colorId} />
+      <Abilities
+        abilities={newAbilities}
+        userName={userName}
+        colorId={colorId}
+      />
     </div>
   );
 };
