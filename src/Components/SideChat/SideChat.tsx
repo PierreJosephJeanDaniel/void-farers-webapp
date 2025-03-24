@@ -83,6 +83,9 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
 
   const [chatHistory, setChatHistory] = useState<ChatEntry[]>(chatHistoryStore);
   const [inputValue, setInputValue] = useState<string>("");
+  const [historyCmdLength, setHistoryCmdLength] = useState<number | undefined>(
+    undefined
+  );
   const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);
 
@@ -107,6 +110,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
           ? [inputValue, ...cmdHistoryList]
           : [inputValue];
         dispatch(updateChatCmdHistory(updatedCmdHistory));
+        setHistoryCmdLength(updatedCmdHistory.length);
       }
       setChatHistory(updatedChatHistory);
       dispatch(updateChat(parsedMessage));
@@ -118,17 +122,29 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       dispatch(resetChat({}));
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
-      if (historyIndex >= cmdHistoryStore.length) {
+      let tmpIndex: number = historyIndex;
+      if (historyIndex >= cmdHistoryStore.length && historyCmdLength) {
         setHistoryIndex(0);
+        tmpIndex = 0;
+        setInputValue(cmdHistoryStore[tmpIndex]);
+      } else if (historyCmdLength) {
+        const newIndex: number =
+          historyIndex + 1 < historyCmdLength ? historyIndex + 1 : 0;
+        setInputValue(cmdHistoryStore[tmpIndex]);
+        setHistoryIndex(newIndex);
       }
-      setInputValue(cmdHistoryStore[historyIndex]);
-      setHistoryIndex(historyIndex + 1);
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
-
-      if (historyIndex > 0) {
-        setInputValue(cmdHistoryStore[historyIndex - 1]);
-        setHistoryIndex(historyIndex - 1);
+      let tmpIndex: number = historyIndex;
+      if (historyIndex < 0 && historyCmdLength) {
+        tmpIndex = historyCmdLength - 1;
+        setHistoryIndex(tmpIndex);
+        setInputValue(cmdHistoryStore[tmpIndex]);
+      } else if (historyCmdLength) {
+        tmpIndex =
+          historyIndex - 1 >= 0 ? historyIndex - 1 : historyCmdLength - 1;
+        setHistoryIndex(tmpIndex);
+        setInputValue(cmdHistoryStore[tmpIndex]);
       }
     } else if ((event.metaKey || event.ctrlKey) && event.key === "e") {
       dispatch(resetChatCmdHistory({}));
@@ -142,24 +158,22 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   }, [chatHistory]);
 
   return (
-    <>
-      <div className="side-chat">
-        <div className="chat-history" ref={chatHistoryRef}>
-          {chatHistory.map((entry, index) => (
-            <Message key={index} {...entry} />
-          ))}
-        </div>
-
-        <div className="chat-entry">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyPress}
-          />
-        </div>
+    <div className="side-chat">
+      <div className="chat-history" ref={chatHistoryRef}>
+        {chatHistory.map((entry, index) => (
+          <Message key={index} {...entry} />
+        ))}
       </div>
-    </>
+
+      <div className="chat-entry">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+      </div>
+    </div>
   );
 };
 

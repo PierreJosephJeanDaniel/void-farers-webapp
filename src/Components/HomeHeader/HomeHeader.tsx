@@ -41,8 +41,6 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
       ...characterData,
       Inventory: inventoryData,
     };
-    console.log("Saving...");
-    console.log(newCharacterData);
     await supabaseManager.updateCharacter(newCharacterData);
     dispatch(setTracker(false));
   };

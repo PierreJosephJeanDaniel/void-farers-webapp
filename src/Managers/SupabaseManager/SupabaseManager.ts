@@ -114,8 +114,6 @@ class SupabaseManager {
         data: { session },
       } = await this.supabase.auth.getSession();
 
-      console.log("Raw session data:", session);
-
       if (!session) {
         console.warn("No session found");
         return null;
@@ -128,13 +126,6 @@ class SupabaseManager {
 
       const userName: string = session.user.email ?? "";
       const userId: string = session.user.id ?? "";
-
-      console.log("User info:", {
-        email: session.user.email,
-        id: session.user.id,
-        userName,
-        userId,
-      });
 
       if (!userName || !userId) {
         console.warn("User data incomplete:", { userName, userId });

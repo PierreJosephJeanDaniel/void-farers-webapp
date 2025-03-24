@@ -6,13 +6,14 @@ html {
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 99%;
+  height: 95%;
   align-items: center;
   border: 0.125rem solid #00ff00; /* 2px */
   text-shadow: 0 0 0.625rem #00ff00; /* 10px */
   font-family: "Sevastopol", sans-serif;
   border-radius: 0.9375rem; /* 15px */
   font-size: 1.875rem; /* 30px */
+  box-shadow: 0 0.25rem #016201; /* 4px */
 }
 
 .chat-entry {
