@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
 import { updateChat } from "../../Store/Chat";
 import { ChatRoll } from "../SideChat/SideChat";
+import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;
@@ -19,6 +20,7 @@ interface WaitsProps {
 
 const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
   const dispatch = useDispatch();
+  const socket = useSocket();
   const modifier: number = value - 5;
   const modifierSign: string =
     modifier === 0
@@ -50,6 +52,9 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
       rollValue: calculatedValue,
       critical: critical,
     };
+    if (socket) {
+      socket.emit("sendMessage", newRollMessage);
+    }
     await dispatch(updateChat(newRollMessage));
   };
   return (

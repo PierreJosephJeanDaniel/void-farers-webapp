@@ -3,8 +3,9 @@ import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
 import { ChatRoll } from "../SideChat/SideChat";
-import { updateChat } from "../../Store/Chat";
+// import { updateChat } from "../../Store/Chat";
 import { AbilityType } from "../../Screens/CharacterSelection/types";
+import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
 
 interface AbilityProps {
   name: string;
@@ -19,6 +20,7 @@ interface Abilities {
 
 const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
   const dispatch = useDispatch();
+  const socket = useSocket();
   const addedValue: string =
     value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
@@ -46,7 +48,10 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
       rollValue: calculatedValue,
       critical: critical,
     };
-    await dispatch(updateChat(newRollMessage));
+    if (socket) {
+      socket.emit("sendMessage", newRollMessage);
+    }
+    // await dispatch(updateChat(newRollMessage));
   };
 
   return (

@@ -13,6 +13,12 @@ import {
   updateChatCmdHistory,
 } from "../../Store/Chat";
 import { RootState } from "../../Store";
+import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+
+/*
+This data structure is shared with the web server (`chat-server-void-farers` repository).
+Make sure that any change in the `ChatMessage`, `ChatRoll`, `ChatEntry`, `WaitsList` or `AbilitiesList` interfaces is reflected in the server.
+*/
 export interface ChatMessage {
   author: string;
   message: string;
@@ -70,6 +76,7 @@ const Message: React.FC<ChatEntry> = (props) => {
 
 const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const dispatch = useDispatch();
+  const socket = useSocket();
 
   const chatHistoryStore: ChatEntry[] = useSelector(
     (state: RootState) => state.chat.chatEntries
@@ -95,8 +102,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
         author: props.userName,
         message: inputValue,
       };
-      const parsedMessage = parseMessage(newMessage);
-      const updatedChatHistory = [parsedMessage, ...chatHistory];
+      const parsedMessage: ChatEntry = parseMessage(newMessage);
       let cmdHistoryList: string[] = cmdHistoryStore;
       const lastRegisteredCmd: string = cmdHistoryList ? cmdHistoryList[0] : "";
       if (lastRegisteredCmd !== inputValue) {
@@ -112,8 +118,9 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
         dispatch(updateChatCmdHistory(updatedCmdHistory));
         setHistoryCmdLength(updatedCmdHistory.length);
       }
-      setChatHistory(updatedChatHistory);
-      dispatch(updateChat(parsedMessage));
+      if (socket) {
+        socket.emit("sendMessage", parsedMessage);
+      }
       setHistoryIndex(0);
       setInputValue("");
     } else if ((event.metaKey || event.ctrlKey) && event.key === "l") {
@@ -150,6 +157,27 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       dispatch(resetChatCmdHistory({}));
     }
   };
+
+  const handleMessageReceived = async (message: ChatEntry) => {
+    const updatedChatHistory = [message, ...chatHistory];
+    setChatHistory(updatedChatHistory);
+    console.log("message received", message);
+    await dispatch(updateChat(message));
+  };
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("receiveMessage", (message: ChatEntry) => {
+        handleMessageReceived(message);
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off("receiveMessage");
+      }
+    };
+  });
 
   useEffect(() => {
     if (chatHistoryRef.current) {
