@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   resetChat,
   resetChatCmdHistory,
-  updateChat,
   updateChatCmdHistory,
 } from "../../Store/Chat";
 import { RootState } from "../../Store";
@@ -78,7 +77,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const dispatch = useDispatch();
   const socket = useSocket();
 
-  const chatHistoryStore: ChatEntry[] = useSelector(
+  const chatHistory: ChatEntry[] = useSelector(
     (state: RootState) => state.chat.chatEntries
   );
   const cmdHistoryStore: string[] = useSelector(
@@ -88,7 +87,6 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
     (state: RootState) => state.chat.maxHistory
   );
 
-  const [chatHistory, setChatHistory] = useState<ChatEntry[]>(chatHistoryStore);
   const [inputValue, setInputValue] = useState<string>("");
   const [historyCmdLength, setHistoryCmdLength] = useState<number | undefined>(
     undefined
@@ -125,7 +123,6 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       setInputValue("");
     } else if ((event.metaKey || event.ctrlKey) && event.key === "l") {
       event.preventDefault();
-      setChatHistory([]);
       dispatch(resetChat({}));
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -157,27 +154,6 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
       dispatch(resetChatCmdHistory({}));
     }
   };
-
-  const handleMessageReceived = async (message: ChatEntry) => {
-    const updatedChatHistory = [message, ...chatHistory];
-    setChatHistory(updatedChatHistory);
-    console.log("message received", message);
-    await dispatch(updateChat(message));
-  };
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("receiveMessage", (message: ChatEntry) => {
-        handleMessageReceived(message);
-      });
-    }
-
-    return () => {
-      if (socket) {
-        socket.off("receiveMessage");
-      }
-    };
-  });
 
   useEffect(() => {
     if (chatHistoryRef.current) {
