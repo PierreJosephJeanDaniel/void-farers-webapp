@@ -4,6 +4,7 @@ interface PopupState {
   isOpen: boolean;
   message: string;
   value: number;
+  critical?: "success" | "fail";
 }
 
 const initialState: PopupState = {
@@ -18,11 +19,16 @@ const popup = createSlice({
   reducers: {
     openPopup(
       state,
-      action: PayloadAction<{ message: string; value: number }>
+      action: PayloadAction<{
+        message: string;
+        value: number;
+        critical?: "success" | "fail";
+      }>
     ) {
       state.isOpen = true;
       state.message = action.payload.message;
       state.value = action.payload.value;
+      state.critical = action.payload.critical;
     },
     closePopup(state) {
       state.isOpen = false;

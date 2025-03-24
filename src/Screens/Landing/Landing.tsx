@@ -4,9 +4,12 @@ import ContinueComponent from "../../Components/ContinueComponent/ContinueCompon
 import Airlock from "../../Components/AirLock/AirLock";
 import { useNavigate } from "react-router-dom";
 import { supabaseManager } from "../../Managers/SupabaseManager/SupabaseManager";
+import { useDispatch } from "react-redux";
+import { setTracker } from "../../Store/ChangeTracker";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = async () => {
     await supabaseManager.LogOut();
@@ -14,6 +17,7 @@ const Landing: React.FC = () => {
 
   const handleContinue = () => {
     navigate("/character-selection");
+    dispatch(setTracker(false));
   };
 
   return (

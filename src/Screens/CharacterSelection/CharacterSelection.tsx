@@ -8,6 +8,7 @@ import ReturnArrow from "../../Components/ReturnArrow/ReturnArrow";
 import { useNavigate } from "react-router-dom";
 import { CharacterProps } from "./types";
 import { updateCharacter } from "../../Store/Character";
+import { initiateInventory } from "../../Store/Inventory";
 
 const CharacterSelection: React.FC = () => {
   const [characters, setCharacters] = useState<string[]>([]);
@@ -39,13 +40,21 @@ const CharacterSelection: React.FC = () => {
     fetchCharacters();
   }, [userId]);
 
+  /**
+   * Fetches the information of the character whose name is passed as an argument
+   * and updates the character and inventory state with the fetched data.
+   * Then navigates to the home screen.
+   * @param {string} name The name of the character selected
+   */
   const handleCharacterSelected = async (name: string) => {
     const characterInfo: CharacterProps[] =
       await supabaseManager.selectCharacter(userId, name);
 
     const characterPayload: CharacterProps = characterInfo[0];
-    dispatch(updateCharacter(characterPayload));
-    navigate("/character-sheet");
+    const { Inventory, ...restOfCharacterPayload } = characterPayload;
+    dispatch(updateCharacter(restOfCharacterPayload));
+    dispatch(initiateInventory(Inventory));
+    navigate("/home");
   };
 
   if (loading) {
@@ -59,7 +68,7 @@ const CharacterSelection: React.FC = () => {
         <Airlock onClick={handleLogout} />
       </header>
       <div className="title">Available characters</div>
-      <div className="body">
+      <div className="body-container">
         {characters.map((name, index) => (
           <div
             className="character"

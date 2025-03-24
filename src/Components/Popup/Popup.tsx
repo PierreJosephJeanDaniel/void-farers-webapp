@@ -6,7 +6,7 @@ import "./Popup.css";
 
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
-  const { isOpen, message, value } = useSelector(
+  const { isOpen, message, value, critical } = useSelector(
     (state: RootState) => state.popup
   );
 
@@ -31,7 +31,21 @@ const Popup: React.FC = () => {
           </span>
         </div>
         <div className="popup-body">
-          <span className="typing-effect"> .................{stringValue}</span>
+          <span className="typing-effect">
+            {" "}
+            ........
+            <span
+              className={
+                critical !== undefined
+                  ? critical === "success"
+                    ? "roll-success"
+                    : "roll-fail"
+                  : ""
+              }
+            >
+              {stringValue}
+            </span>
+          </span>
         </div>
       </div>
     </div>

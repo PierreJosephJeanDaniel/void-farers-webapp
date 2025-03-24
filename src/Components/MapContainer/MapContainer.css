@@ -1,0 +1,15 @@
+.map-container {
+  width: 99wh;
+  height: 93vh /* 100vh - 7vh for the header */;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* box-sizing: border-box; */
+}
+
+.map-svg {
+  width: 10%;
+  height: 10%;
+  background-color: black;
+}

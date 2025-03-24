@@ -26,15 +26,21 @@
   color: #00ff00;
 }
 
-.body {
+.body-container {
   display: flex;
+  width: 50vw;
+  height: 50vh;
+  justify-content: space-evenly;
   justify-content: center;
+  align-items: center;
+  gap: 30px;
   font-family: "Sevastopol", sans-serif;
   color: #00ff00;
 }
 
 .character {
   cursor: pointer;
+  user-select: none;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 5px 0;
@@ -70,6 +76,7 @@
 
 .landing-header svg {
   cursor: pointer;
+  user-select: none;
   padding-right: 5%;
   width: 80px;
   height: 80px;

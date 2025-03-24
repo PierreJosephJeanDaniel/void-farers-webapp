@@ -33,6 +33,7 @@
   cursor: pointer;
   padding-right: 5%;
   width: 80px;
+  user-select: none;
   height: 80px;
 }
 

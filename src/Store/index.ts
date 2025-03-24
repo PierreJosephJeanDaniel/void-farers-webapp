@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import Auth from "./Auth";
 import Popup from "./Popup";
 import Character from "./Character";
+import Inventory from "./Inventory";
+import Chat from "./Chat";
 import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
@@ -13,6 +15,7 @@ import {
   persistReducer,
   persistStore,
 } from "redux-persist";
+import ChangeTracker from "./ChangeTracker";
 
 // export const reducers = combineReducers({ Auth, Popup });
 
@@ -20,13 +23,16 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "character"],
+  whitelist: ["auth", "character", "inventory", "chat", "changeTracker"],
 };
 
 const rootReducer = combineReducers({
   popup: Popup,
   auth: Auth,
   character: Character,
+  inventory: Inventory,
+  chat: Chat,
+  changeTracker: ChangeTracker,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

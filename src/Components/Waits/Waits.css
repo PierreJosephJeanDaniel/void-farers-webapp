@@ -3,7 +3,13 @@
   gap: 3%;
 
   /* scanlines */
-  background: linear-gradient(to top, #000000, #000000, #333333, #333333);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.8),
+    rgba(51, 51, 51, 0.6),
+    rgba(51, 51, 51, 0.6)
+  );
   background-size: cover;
   background-size: 100% 5px;
 
@@ -28,6 +34,7 @@
 
 .wait {
   cursor: pointer;
+  user-select: none;
   margin: 5px 0;
   justify-content: space-between;
   display: flex;
@@ -69,7 +76,7 @@
 }
 
 @media screen {
-  .crt {
+  .crt-waits {
     animation: crt 5s linear infinite;
   }
 }
