@@ -3,22 +3,31 @@ import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
 import { ChatRoll } from "../SideChat/SideChat";
-import { updateChat } from "../../Store/Chat";
+// import { updateChat } from "../../Store/Chat";
 import { AbilityType } from "../../Screens/CharacterSelection/types";
+import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
 
 interface AbilityProps {
   name: string;
   value: number;
   userName: string;
+  colorId: string;
 }
 
 interface Abilities {
   abilities: AbilityType;
   userName: string;
+  colorId: string;
 }
 
-const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
+const Ability: React.FC<AbilityProps> = ({
+  name,
+  value,
+  userName,
+  colorId,
+}) => {
   const dispatch = useDispatch();
+  const { socket } = useSocket();
   const addedValue: string =
     value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
@@ -45,8 +54,13 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
       rollType: name,
       rollValue: calculatedValue,
       critical: critical,
+      colorId: colorId,
     };
-    await dispatch(updateChat(newRollMessage));
+    setTimeout(() => {
+      if (socket) {
+        socket.emit("sendMessage", newRollMessage);
+      }
+    }, 1700);
   };
 
   return (
@@ -57,13 +71,19 @@ const Ability: React.FC<AbilityProps> = ({ name, value, userName }) => {
   );
 };
 
-const Abilities: React.FC<Abilities> = ({ abilities, userName }) => {
+const Abilities: React.FC<Abilities> = ({ abilities, userName, colorId }) => {
   return (
     <div className="crt">
       <h1>Abilities</h1>
       <div className="abilities">
         {Object.entries(abilities).map(([name, value]) => (
-          <Ability key={name} name={name} value={value} userName={userName} />
+          <Ability
+            key={name}
+            name={name}
+            value={value}
+            userName={userName}
+            colorId={colorId}
+          />
         ))}
       </div>
     </div>

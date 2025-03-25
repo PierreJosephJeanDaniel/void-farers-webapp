@@ -49,7 +49,6 @@ const CharacterSelection: React.FC = () => {
   const handleCharacterSelected = async (name: string) => {
     const characterInfo: CharacterProps[] =
       await supabaseManager.selectCharacter(userId, name);
-
     const characterPayload: CharacterProps = characterInfo[0];
     const { Inventory, ...restOfCharacterPayload } = characterPayload;
     dispatch(updateCharacter(restOfCharacterPayload));

@@ -19,6 +19,7 @@ export interface CharacterProps {
   IsDm: boolean;
   User: string;
   Inventory: ObjectProps[];
+  ColorId: string;
 }
 
 export interface ObjectProps {

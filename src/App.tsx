@@ -20,6 +20,7 @@ import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
 import { PersistGate } from "redux-persist/integration/react";
 import Home from "./Screens/Home/Home";
 import ObjectPopup from "./Components/ObjectPopup/ObjectPopup";
+import { SocketProvider } from "./Wrappers/ChatSocket/ChatSocket";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -53,26 +54,28 @@ function App() {
   } else {
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Starfield />
-          <Router>
-            <Routes>
-              <Route path="/" element={<Navigate to="/landing" />} />
-              <Route path="/landing" element={<Landing />} />
-              <Route
-                path="/character-selection"
-                element={<CharacterSelection />}
-              />
-              <Route path="/home" element={<Home />} />
-              <Route
-                path="/character-sheet"
-                element={<CharacterSheet name={"Bilbo Baggins"} />}
-              />
-            </Routes>
-          </Router>
-          <Popup />
-          <ObjectPopup />
-        </PersistGate>
+        <SocketProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <Starfield />
+            <Router>
+              <Routes>
+                <Route path="/" element={<Navigate to="/landing" />} />
+                <Route path="/landing" element={<Landing />} />
+                <Route
+                  path="/character-selection"
+                  element={<CharacterSelection />}
+                />
+                <Route path="/home" element={<Home />} />
+                <Route
+                  path="/character-sheet"
+                  element={<CharacterSheet name={"Bilbo Baggins"} />}
+                />
+              </Routes>
+            </Router>
+            <Popup />
+            <ObjectPopup />
+          </PersistGate>
+        </SocketProvider>
       </Provider>
     );
   }

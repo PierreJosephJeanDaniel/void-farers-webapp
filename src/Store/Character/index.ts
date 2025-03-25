@@ -56,6 +56,7 @@ const initialState: CharacterProps = {
   IsDm: false,
   User: "",
   Inventory: [],
+  ColorId: "#000000",
 };
 
 const character: Slice<CharacterProps> = createSlice({

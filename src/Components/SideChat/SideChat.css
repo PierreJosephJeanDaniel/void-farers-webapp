@@ -14,19 +14,63 @@ html {
   border-radius: 0.9375rem; /* 15px */
   font-size: 1.875rem; /* 30px */
   box-shadow: 0 0.25rem #016201; /* 4px */
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.side-chat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to bottom, #01000078, transparent);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(5px);
 }
 
 .chat-entry {
   display: flex;
-  flex: 0.25;
+  flex-grow: 1;
+  flex: 0.15;
   width: 100%;
-  /* height: 25%; */
+  height: 100%;
   cursor: pointer;
   align-items: flex-start;
+  align-content: center;
   border-top: 0.125rem solid #00ff00; /* 2px */
   padding: 0.125rem; /* 2px */
   color: #00ff00;
   text-shadow: 0 0 0.625rem #00ff00; /* 10px */
+  overflow: hidden;
+}
+
+.connected-status-container {
+  display: flex;
+  flex: 0.1;
+  width: 100%;
+  background-color: #00ff0022;
+  border-top: 0.125rem solid #00ff00; /* 2px */
+  color: #00ff00;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.no-connection-status-container {
+  display: flex;
+  flex: 0.1;
+  width: 100%;
+  background-color: rgba(255, 99, 71, 0.15);
+  border-top: 0.125rem solid #00ff00; /* 2px */
+  color: tomato;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .chat-message {
@@ -37,6 +81,7 @@ html {
   border-top: 0.0625rem solid #eee; /* 1px */
   word-wrap: break-word;
   flex-wrap: break-word;
+  padding-left: 0.625rem;
 }
 
 .chat-author {
@@ -78,6 +123,7 @@ html {
 
 .chat-history {
   display: flex;
+  flex: 0.75;
   flex-direction: column-reverse;
   overflow-y: auto;
   width: 100%;
@@ -87,6 +133,8 @@ html {
   text-shadow: 0 0 0.625rem #00ff00; /* 10px */
   font-family: "Sevastopol", sans-serif;
   font-size: 1.875rem; /* 30px */
+  position: relative;
+  z-index: 0;
 }
 
 .chat-entry input {
@@ -95,8 +143,11 @@ html {
   height: 100%;
   border: none;
   outline: none;
-  /* background: transparent; */
+  background: transparent;
   color: #00ff00;
+  padding-left: 0.9375rem; /* 15px */
+  padding-right: 0.9375rem; /* 15px */
   font-family: "Sevastopol", sans-serif;
   font-size: 1.875rem; /* 30px */
+  overflow: hidden;
 }

@@ -3,22 +3,25 @@ import "./Waits.css";
 import { WaitsType } from "../../Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
-import { updateChat } from "../../Store/Chat";
 import { ChatRoll } from "../SideChat/SideChat";
+import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;
   value: number;
   userName: string;
+  colorId: string;
 }
 
 interface WaitsProps {
   waits: WaitsType;
   userName: string;
+  colorId: string;
 }
 
-const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
+const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
   const dispatch = useDispatch();
+  const { socket } = useSocket();
   const modifier: number = value - 5;
   const modifierSign: string =
     modifier === 0
@@ -49,8 +52,14 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
       rollType: name,
       rollValue: calculatedValue,
       critical: critical,
+      colorId: colorId,
     };
-    await dispatch(updateChat(newRollMessage));
+
+    setTimeout(() => {
+      if (socket) {
+        socket.emit("sendMessage", newRollMessage);
+      }
+    }, 1700);
   };
   return (
     <div className="wait" onClick={handleClick}>
@@ -60,7 +69,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName }) => {
   );
 };
 
-const Waits: React.FC<WaitsProps> = ({ waits, userName }) => {
+const Waits: React.FC<WaitsProps> = ({ waits, userName, colorId }) => {
   return (
     <div className="crt-waits">
       <h1>W.A.I.T.S</h1>
@@ -70,6 +79,7 @@ const Waits: React.FC<WaitsProps> = ({ waits, userName }) => {
           name={name}
           value={value as number}
           userName={userName}
+          colorId={colorId}
         />
       ))}
     </div>

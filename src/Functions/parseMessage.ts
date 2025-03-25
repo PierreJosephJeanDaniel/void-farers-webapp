@@ -33,6 +33,7 @@ export function parseMessage(message: ChatMessage): ChatRoll | ChatMessage {
       rollType: diceExpressions.join(" + "),
       rollValue: totalRollValue,
       critical: critical,
+      colorId: message.colorId,
     };
     return parsedMessage;
   }
