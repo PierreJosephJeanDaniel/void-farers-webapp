@@ -3,7 +3,6 @@ import "./Waits.css";
 import { WaitsType } from "../../Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../Store/Popup";
-import { updateChat } from "../../Store/Chat";
 import { ChatRoll } from "../SideChat/SideChat";
 import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
 
@@ -58,7 +57,6 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
     if (socket) {
       socket.emit("sendMessage", newRollMessage);
     }
-    await dispatch(updateChat(newRollMessage));
   };
   return (
     <div className="wait" onClick={handleClick}>
