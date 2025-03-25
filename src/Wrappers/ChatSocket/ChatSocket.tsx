@@ -12,7 +12,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const newSocket = io("http://localhost:4000");
+    const newSocket = io("https://chat-server-void-farers.onrender.com");
     setSocket(newSocket);
 
     newSocket.on("receiveMessage", (message: ChatEntry) => {
