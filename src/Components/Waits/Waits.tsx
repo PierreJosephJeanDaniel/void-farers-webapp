@@ -21,7 +21,7 @@ interface WaitsProps {
 
 const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
   const dispatch = useDispatch();
-  const socket = useSocket();
+  const { socket } = useSocket();
   const modifier: number = value - 5;
   const modifierSign: string =
     modifier === 0

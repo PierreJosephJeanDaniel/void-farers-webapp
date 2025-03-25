@@ -27,7 +27,7 @@ const Ability: React.FC<AbilityProps> = ({
   colorId,
 }) => {
   const dispatch = useDispatch();
-  const socket = useSocket();
+  const { socket } = useSocket();
   const addedValue: string =
     value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
