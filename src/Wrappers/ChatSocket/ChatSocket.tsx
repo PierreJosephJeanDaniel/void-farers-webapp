@@ -4,6 +4,7 @@ import { SocketContext } from "./UseSocket";
 import { useDispatch } from "react-redux";
 import { ChatEntry } from "../../Components/SideChat/SideChat";
 import { updateChat } from "../../Store/Chat";
+import messageSound from "../../assets/sounds/message.mp3";
 
 export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -15,8 +16,11 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     const newSocket = io("https://chat-server-void-farers.onrender.com");
     setSocket(newSocket);
 
+    const audio: HTMLAudioElement = new Audio(messageSound);
+
     newSocket.on("receiveMessage", (message: ChatEntry) => {
       dispatch(updateChat(message));
+      audio.play();
     });
 
     return () => {
