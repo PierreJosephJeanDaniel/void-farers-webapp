@@ -10,6 +10,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [isConnected, setIsConnected] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,6 +18,14 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     setSocket(newSocket);
 
     const audio: HTMLAudioElement = new Audio(messageSound);
+
+    newSocket.on("connect", () => {
+      setIsConnected(true);
+    });
+
+    newSocket.on("disconnect", () => {
+      setIsConnected(false);
+    });
 
     newSocket.on("receiveMessage", (message: ChatEntry) => {
       dispatch(updateChat(message));
@@ -29,6 +38,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [dispatch]);
 
   return (
-    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+    <SocketContext.Provider value={{ socket, isConnected }}>
+      {children}
+    </SocketContext.Provider>
   );
 };

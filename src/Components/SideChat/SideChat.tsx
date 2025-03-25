@@ -94,7 +94,7 @@ const Message: React.FC<ChatEntry> = (props) => {
 
 const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const dispatch = useDispatch();
-  const socket = useSocket();
+  const { socket, isConnected } = useSocket();
 
   const chatHistory: ChatEntry[] = useSelector(
     (state: RootState) => state.chat.chatEntries
@@ -188,7 +188,13 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
           <Message key={index} {...entry} />
         ))}
       </div>
-
+      {isConnected ? (
+        <div className="connected-status-container">///-- CONNECTED --///</div>
+      ) : (
+        <div className="no-connection-status-container">
+          ///-- NO CONNECTION --///
+        </div>
+      )}
       <div className="chat-entry">
         <input
           type="text"
