@@ -16,7 +16,7 @@ import {
   updateCharacter,
 } from "../../Store/Character";
 import { setTracker } from "../../Store/ChangeTracker";
-import WorkInProgress from "../WorkInProgress/WorkInProgress";
+import SpaceWorkInProgress from "../WorkInProgress/SpaceWorkInProgress";
 
 enum Category {
   HEALTH = 0,
@@ -179,7 +179,7 @@ const MainPage: React.FC = () => {
       </div>
       <div className="main-page-body">
         <div className="main-page-left">
-          <WorkInProgress />
+          <SpaceWorkInProgress />
         </div>
         <SideChat userName={userName} colorId={colorId} />
       </div>
