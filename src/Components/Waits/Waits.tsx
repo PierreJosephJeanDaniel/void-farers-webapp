@@ -54,9 +54,12 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
       critical: critical,
       colorId: colorId,
     };
-    if (socket) {
-      socket.emit("sendMessage", newRollMessage);
-    }
+
+    setTimeout(() => {
+      if (socket) {
+        socket.emit("sendMessage", newRollMessage);
+      }
+    }, 1700);
   };
   return (
     <div className="wait" onClick={handleClick}>

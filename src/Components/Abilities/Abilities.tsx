@@ -56,10 +56,11 @@ const Ability: React.FC<AbilityProps> = ({
       critical: critical,
       colorId: colorId,
     };
-    if (socket) {
-      socket.emit("sendMessage", newRollMessage);
-    }
-    // await dispatch(updateChat(newRollMessage));
+    setTimeout(() => {
+      if (socket) {
+        socket.emit("sendMessage", newRollMessage);
+      }
+    }, 1700);
   };
 
   return (
