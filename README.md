@@ -1,50 +1,23 @@
-# React + TypeScript + Vite
+# Void Farers
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repo hosts the bulk of the web-app aimed at allowing players to track their character stats & inventory, along with communicating together, while playing `Void Farers`.
 
-Currently, two official plugins are available:
+## How to run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository
+2. Insure you have `npm` installed
+3. Open the repo and add the `.env` file
+4. Populate the `.env` as follow (if you are working with me, just ask me the keys on the side):
 
-## Expanding the ESLint configuration
+```
+# Variables have to be prefixed with VITE_ to be accessible in the client side (https://vite.dev/guide/env-and-mode.html#env-files)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_PROJECT_URL=your_supabase_project
+VITE_SUPABASE_PROJECT_ID=your_supabase_id
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+VITE_CHAT_SERVER=your_chat_server_address
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. Install the required dependencies with by running `npm install` on your terminal
+6. You can start the client locally by running `npm run dev`

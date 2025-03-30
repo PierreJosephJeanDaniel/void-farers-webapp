@@ -42,8 +42,8 @@ html {
   align-content: center;
   border-top: 0.125rem solid #00ff00; /* 2px */
   padding: 0.125rem; /* 2px */
-  color: #00ff00;
-  text-shadow: 0 0 0.625rem #00ff00; /* 10px */
+  color: #eee;
+  /* text-shadow: 0 0 0.625rem #00ff00; COMMENTED TO NOT HAVE TEXT SHADOW BY DEFAULT */
   overflow: hidden;
 }
 

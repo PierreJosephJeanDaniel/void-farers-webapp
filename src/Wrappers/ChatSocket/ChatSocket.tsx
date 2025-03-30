@@ -14,7 +14,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const newSocket = io("https://chat-server-void-farers.onrender.com");
+    const newSocket = io(import.meta.env.VITE_CHAT_SERVER);
     setSocket(newSocket);
 
     const audio: HTMLAudioElement = new Audio(messageSound);

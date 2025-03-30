@@ -26,15 +26,16 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 95%;
   max-height: 83%;
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
+  /* background-color: aliceblue; */
 }
 
 .main-page-left {
-  flex: 0.75;
-  height: 100%;
-  width: 75%;
+  flex: 0.85;
+  height: 90%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
