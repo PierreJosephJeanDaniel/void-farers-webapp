@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./SideChat.css";
-import {
-  AbilitiesList,
-  WaitsList,
-} from "@/Screens/CharacterSelection/types";
+import { AbilitiesList, WaitsList } from "@/Screens/CharacterSelection/types";
 import { parseMessage } from "@/Functions/parseMessage";
 import { useDispatch, useSelector } from "react-redux";
 import {
