@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint src --color",
     "preview": "vite preview",
-    "type-check": "tsc --project tsconfig.app.json --noEmit"
+    "type-check": "tsc --project tsconfig.app.json --noEmit",
+    "prettier": "prettier src --check"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
+    "prettier": "^3.5.3",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",
     "vite": "^5.4.10"
