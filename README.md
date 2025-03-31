@@ -1,4 +1,4 @@
-# Void Farers
+# Void Farers ![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)
 
 This repo hosts the bulk of the web-app aimed at allowing players to track their character stats & inventory, along with communicating together, while playing `Void Farers`.
 
