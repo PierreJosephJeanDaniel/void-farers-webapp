@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
-import { SocketContext } from "./UseSocket";
+import { SocketContext } from "@/Wrappers/ChatSocket/UseSocket";
 import { useDispatch } from "react-redux";
-import { ChatEntry } from "../../Components/SideChat/SideChat";
-import { updateChat } from "../../Store/Chat";
-import messageSound from "../../assets/sounds/message.mp3";
+import { ChatEntry } from "@/Components/SideChat/SideChat";
+import { updateChat } from "@/Store/Chat";
+import messageSound from "@/assets/sounds/message.mp3";
 
 export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

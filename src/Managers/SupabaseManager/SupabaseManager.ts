@@ -1,7 +1,7 @@
 import { createClient, SupabaseClient, Session } from "@supabase/supabase-js";
-import store from "../../Store";
-import { login } from "../../Store/Auth";
-import { CharacterProps } from "../../Screens/CharacterSelection/types";
+import store from "@/Store";
+import { login } from "@/Store/Auth";
+import { CharacterProps } from "@/Screens/CharacterSelection/types";
 
 class SupabaseManager {
   public static instance: SupabaseManager;

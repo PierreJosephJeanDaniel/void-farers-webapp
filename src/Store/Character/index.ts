@@ -5,7 +5,7 @@ import {
   CharacterProps,
   WAITS,
   WaitsList,
-} from "../../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 
 const initialWaits: Record<WaitsList, number> = {
   [WAITS.WILL]: 0,

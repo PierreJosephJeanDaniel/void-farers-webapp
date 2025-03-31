@@ -4,7 +4,7 @@ import {
   ObjectProps,
   WAITS,
   WaitsList,
-} from "../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 
 type ListType = "abilities" | "waits";
 

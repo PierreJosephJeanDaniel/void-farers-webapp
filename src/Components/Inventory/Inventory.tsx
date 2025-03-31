@@ -1,9 +1,9 @@
 import React from "react";
 import "./Inventory.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
-import { openInvPopup, selectObject } from "../../Store/Inventory";
-import { ObjectProps } from "../../Screens/CharacterSelection/types";
+import { RootState } from "@/Store";
+import { openInvPopup, selectObject } from "@/Store/Inventory";
+import { ObjectProps } from "@/Screens/CharacterSelection/types";
 
 const InvObject: React.FC<ObjectProps> = ({
   name,

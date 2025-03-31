@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { ChatEntry } from "../../Components/SideChat/SideChat";
+import { ChatEntry } from "@/Components/SideChat/SideChat";
 
 interface ChatProps {
   chatEntries: ChatEntry[];

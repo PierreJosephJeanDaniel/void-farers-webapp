@@ -3,16 +3,16 @@ import "./SideChat.css";
 import {
   AbilitiesList,
   WaitsList,
-} from "../../Screens/CharacterSelection/types";
-import { parseMessage } from "../../Functions/parseMessage";
+} from "@/Screens/CharacterSelection/types";
+import { parseMessage } from "@/Functions/parseMessage";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetChat,
   resetChatCmdHistory,
   updateChatCmdHistory,
-} from "../../Store/Chat";
-import { RootState } from "../../Store";
-import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+} from "@/Store/Chat";
+import { RootState } from "@/Store";
+import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 /*
 This data structure is shared with the web server (`chat-server-void-farers` repository).

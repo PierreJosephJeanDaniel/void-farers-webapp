@@ -1,11 +1,11 @@
 import React from "react";
 import "./MainPage.css";
-import Shield from "../Shield/Shield";
+import Shield from "@/Components/Shield/Shield";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
-import Health from "../Health/Health";
-import Aegis from "../Aegis/Aegis";
-import SideChat from "../SideChat/SideChat";
+import { RootState } from "@/Store";
+import Health from "@/Components/Health/Health";
+import Aegis from "@/Components/Aegis/Aegis";
+import SideChat from "@/Components/SideChat/SideChat";
 import {
   decreaseAegis,
   decreaseArmor,
@@ -14,9 +14,9 @@ import {
   increaseArmor,
   increaseHp,
   updateCharacter,
-} from "../../Store/Character";
-import { setTracker } from "../../Store/ChangeTracker";
-import SpaceWorkInProgress from "../WorkInProgress/SpaceWorkInProgress";
+} from "@/Store/Character";
+import { setTracker } from "@/Store/ChangeTracker";
+import SpaceWorkInProgress from "@/Components/WorkInProgress/SpaceWorkInProgress";
 
 enum Category {
   HEALTH = 0,

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Waits.css";
-import { WaitsType } from "../../Screens/CharacterSelection/types";
+import { WaitsType } from "@/Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
-import { openPopup } from "../../Store/Popup";
-import { ChatRoll } from "../SideChat/SideChat";
-import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+import { openPopup } from "@/Store/Popup";
+import { ChatRoll } from "@/Components/SideChat/SideChat";
+import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;

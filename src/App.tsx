@@ -12,14 +12,14 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Landing from "./Screens/Landing/Landing";
+import Landing from "@/Screens/Landing/Landing";
 import "./App.css";
-import CharacterSelection from "./Screens/CharacterSelection/CharacterSelection";
-import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
+import CharacterSelection from "@/Screens/CharacterSelection/CharacterSelection";
+import { supabaseManager } from "@/Managers/SupabaseManager/SupabaseManager";
 import { PersistGate } from "redux-persist/integration/react";
-import Home from "./Screens/Home/Home";
-import ObjectPopup from "./Components/ObjectPopup/ObjectPopup";
-import { SocketProvider } from "./Wrappers/ChatSocket/ChatSocket";
+import Home from "@/Screens/Home/Home";
+import ObjectPopup from "@/Components/ObjectPopup/ObjectPopup";
+import { SocketProvider } from "@/Wrappers/ChatSocket/ChatSocket";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);

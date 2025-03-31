@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import Auth from "./Auth";
-import Popup from "./Popup";
-import Character from "./Character";
-import Inventory from "./Inventory";
-import Chat from "./Chat";
+import Auth from "@/Store/Auth";
+import Popup from "@/Store/Popup";
+import Character from "@/Store/Character";
+import Inventory from "@/Store/Inventory";
+import Chat from "@/Store/Chat";
 import storage from "redux-persist/lib/storage";
 import {
   FLUSH,

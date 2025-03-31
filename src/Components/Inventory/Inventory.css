@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Sevastopol";
-  src: url("../../fonts/Sevastopol-Interface.ttf") format("trueType");
+  src: url("@/fonts/Sevastopol-Interface.ttf") format("trueType");
 }
 
 .inventory-container {

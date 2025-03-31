@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
-import Abilities from "../Abilities/Abilities";
-import Waits from "../Waits/Waits";
-import { RootState } from "../../Store";
+import Abilities from "@/Components/Abilities/Abilities";
+import Waits from "@/Components/Waits/Waits";
+import { RootState } from "@/Store";
 import {
   CharacterProps,
   ObjectProps,
   AbilitiesList,
   WaitsList,
-} from "../../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 import "./AbilityContainer.css";
-import { checkInventoryModifiers } from "../../Functions/checkInventoryModifiers";
+import { checkInventoryModifiers } from "@/Functions/checkInventoryModifiers";
 
 const AbilityContainer: React.FC = () => {
   const character: CharacterProps = useSelector(

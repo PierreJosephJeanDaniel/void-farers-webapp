@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
+import { RootState } from "@/Store";
 import "./ObjectPopup.css";
-import { closeInvPopup, consumeObject } from "../../Store/Inventory";
-import { ObjectProps } from "../../Screens/CharacterSelection/types";
-import { setTracker } from "../../Store/ChangeTracker";
+import { closeInvPopup, consumeObject } from "@/Store/Inventory";
+import { ObjectProps } from "@/Screens/CharacterSelection/types";
+import { setTracker } from "@/Store/ChangeTracker";
 
 const Popup: React.FC = () => {
   const dispatch = useDispatch();

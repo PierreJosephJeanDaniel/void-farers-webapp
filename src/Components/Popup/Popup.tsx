@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
-import { closePopup } from "../../Store/Popup";
+import { RootState } from "@/Store";
+import { closePopup } from "@/Store/Popup";
 import "./Popup.css";
 
 const Popup: React.FC = () => {

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit/react";
-import { ObjectProps } from "../../Screens/CharacterSelection/types";
+import { ObjectProps } from "@/Screens/CharacterSelection/types";
 
 interface InventoryState {
   isPopupOpen: boolean;
