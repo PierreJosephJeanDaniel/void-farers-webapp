@@ -9,7 +9,8 @@
     "lint": "eslint src --color",
     "preview": "vite preview",
     "type-check": "tsc --project tsconfig.app.json --noEmit",
-    "prettier": "prettier src --check"
+    "prettier": "prettier src --check",
+    "prettier:fix": "prettier src --write"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
