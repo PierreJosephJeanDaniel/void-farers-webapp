@@ -2,7 +2,7 @@
 
 ## Description
 
-<!-- Provide a brief summary of the changes in this PR -->
+<!-- Provide a thorough summary of the changes in this PR -->
 
 ## Related Issue
 
@@ -23,9 +23,19 @@
 - [ ] Performance improvements
 - [ ] Test updates
 
-## How Has This Been Tested?
+## Changes details
 
-<!-- Describe the tests you ran to verify your changes -->
+### 🤖 Features
+
+<!-- Describe the new features, delete this section otherwise -->
+
+### 🐛 Fixes
+
+<!-- Describe the fixes you brought, delete this section otherwise -->
+
+### 🧪 Tests
+
+<!-- Describe the tests you creates/ran to verify your changes -->
 
 - [ ] Unit tests
 - [ ] Integration tests
