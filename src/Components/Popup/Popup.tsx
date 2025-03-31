@@ -7,7 +7,7 @@ import "./Popup.css";
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
   const { isOpen, message, value, critical } = useSelector(
-    (state: RootState) => state.popup
+    (state: RootState) => state.popup,
   );
 
   const stringValue: string =

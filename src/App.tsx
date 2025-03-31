@@ -32,7 +32,7 @@ function App() {
     const subscription = supabaseManager.onAuthStateChange(
       (_event, session) => {
         setSession(session);
-      }
+      },
     );
     return () => subscription.unsubscribe();
   }, []);

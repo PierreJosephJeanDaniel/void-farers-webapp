@@ -47,7 +47,7 @@ const InvObject: React.FC<ObjectProps> = ({
 
 const Inventory: React.FC = () => {
   const objectList: ObjectProps[] = useSelector(
-    (state: RootState) => state.inventory.objectList
+    (state: RootState) => state.inventory.objectList,
   );
   return (
     <div className="inventory-container">

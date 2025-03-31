@@ -24,13 +24,13 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
   const dispatch = useDispatch();
 
   const characterData: CharacterProps = useSelector(
-    (state: RootState) => state.character
+    (state: RootState) => state.character,
   );
   const inventoryData: ObjectProps[] = useSelector(
-    (state: RootState) => state.inventory.objectList
+    (state: RootState) => state.inventory.objectList,
   );
   const isChangesMade: boolean = useSelector(
-    (state: RootState) => state.changeTracker.change
+    (state: RootState) => state.changeTracker.change,
   );
 
   const handleSave = async () => {

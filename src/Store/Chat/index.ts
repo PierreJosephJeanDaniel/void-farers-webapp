@@ -25,7 +25,7 @@ const Chat: Slice<ChatProps> = createSlice({
     },
     updateChatCmdHistory: (
       state: ChatProps,
-      action: PayloadAction<string[]>
+      action: PayloadAction<string[]>,
     ) => {
       return {
         ...state,

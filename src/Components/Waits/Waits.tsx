@@ -27,8 +27,8 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
     modifier === 0
       ? ""
       : modifier > 0
-      ? `+ ${modifier}`
-      : `- ${Math.abs(modifier)}`;
+        ? `+ ${modifier}`
+        : `- ${Math.abs(modifier)}`;
 
   const handleClick = async () => {
     const message: string = `${name}`;
@@ -45,7 +45,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
         message: message,
         value: calculatedValue,
         critical: critical,
-      })
+      }),
     );
     const newRollMessage: ChatRoll = {
       author: userName,

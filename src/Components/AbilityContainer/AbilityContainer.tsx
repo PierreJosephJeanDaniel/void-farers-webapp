@@ -13,10 +13,10 @@ import { checkInventoryModifiers } from "../../Functions/checkInventoryModifiers
 
 const AbilityContainer: React.FC = () => {
   const character: CharacterProps = useSelector(
-    (state: RootState) => state.character
+    (state: RootState) => state.character,
   );
   const inventory: ObjectProps[] = useSelector(
-    (state: RootState) => state.inventory.objectList
+    (state: RootState) => state.inventory.objectList,
   );
   const userName: string = character.Name;
   const colorId: string = character.ColorId;
@@ -25,12 +25,12 @@ const AbilityContainer: React.FC = () => {
   const newWaits: Record<WaitsList, number> = checkInventoryModifiers(
     waits,
     inventory,
-    "waits"
+    "waits",
   ) as Record<WaitsList, number>;
   const newAbilities: Record<AbilitiesList, number> = checkInventoryModifiers(
     abilities,
     inventory,
-    "abilities"
+    "abilities",
   ) as Record<AbilitiesList, number>;
   return (
     <div className="sheet-body">

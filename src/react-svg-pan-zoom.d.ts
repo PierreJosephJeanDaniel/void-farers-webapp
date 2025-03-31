@@ -40,12 +40,12 @@ declare module "react-svg-pan-zoom" {
       selectionSVGPointX: number,
       selectionSVGPointY: number,
       selectionWidth: number,
-      selectionHeight: number
+      selectionHeight: number,
     ) => void;
     setPointOnViewerCenter: (
       SVGPointX: number,
       SVGPointY: number,
-      zoomLevel: number
+      zoomLevel: number,
     ) => void;
     reset: () => void;
   }

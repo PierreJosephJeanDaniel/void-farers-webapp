@@ -23,7 +23,7 @@ const popup = createSlice({
         message: string;
         value: number;
         critical?: "success" | "fail";
-      }>
+      }>,
     ) {
       state.isOpen = true;
       state.message = action.payload.message;

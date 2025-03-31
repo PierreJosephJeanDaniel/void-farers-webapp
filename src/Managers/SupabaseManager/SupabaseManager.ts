@@ -138,7 +138,7 @@ class SupabaseManager {
     }
   }
   public onAuthStateChange(
-    callback: (event: string, session: Session | null) => void
+    callback: (event: string, session: Session | null) => void,
   ) {
     const {
       data: { subscription },

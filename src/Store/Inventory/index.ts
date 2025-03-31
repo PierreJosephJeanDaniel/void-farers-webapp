@@ -25,7 +25,7 @@ const inventory = createSlice({
       state.selectedObject.quantity -= 1;
       if (state.selectedObject.quantity <= 0) {
         state.objectList = state.objectList.filter(
-          (object) => object.name !== state.selectedObject?.name
+          (object) => object.name !== state.selectedObject?.name,
         );
       } else {
         state.objectList = state.objectList.map((object) => {

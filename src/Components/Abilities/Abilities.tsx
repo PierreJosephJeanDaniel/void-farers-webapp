@@ -47,7 +47,7 @@ const Ability: React.FC<AbilityProps> = ({
         message: message,
         value: calculatedValue,
         critical: critical,
-      })
+      }),
     );
     const newRollMessage: ChatRoll = {
       author: userName,

@@ -97,18 +97,18 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const { socket, isConnected } = useSocket();
 
   const chatHistory: ChatEntry[] = useSelector(
-    (state: RootState) => state.chat.chatEntries
+    (state: RootState) => state.chat.chatEntries,
   );
   const cmdHistoryStore: string[] = useSelector(
-    (state: RootState) => state.chat.cmdHistory
+    (state: RootState) => state.chat.cmdHistory,
   );
   const maxHistory: number = useSelector(
-    (state: RootState) => state.chat.maxHistory
+    (state: RootState) => state.chat.maxHistory,
   );
 
   const [inputValue, setInputValue] = useState<string>("");
   const [historyCmdLength, setHistoryCmdLength] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);

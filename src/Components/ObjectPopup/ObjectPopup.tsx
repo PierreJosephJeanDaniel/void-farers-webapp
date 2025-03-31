@@ -9,7 +9,7 @@ import { setTracker } from "../../Store/ChangeTracker";
 const Popup: React.FC = () => {
   const dispatch = useDispatch();
   const { isPopupOpen, selectedObject } = useSelector(
-    (state: RootState) => state.inventory
+    (state: RootState) => state.inventory,
   );
 
   if (!isPopupOpen) {

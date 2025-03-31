@@ -12,10 +12,10 @@ import MainPage from "../../Components/MainPage/MainPage";
 
 const Home: React.FC = () => {
   const [currentTab, setCurrentTab] = React.useState<TabOptions>(
-    TabOptions.HOME
+    TabOptions.HOME,
   );
   const character: CharacterProps = useSelector(
-    (state: RootState) => state.character
+    (state: RootState) => state.character,
   );
 
   const handleClick = (tab: TabOptions) => {

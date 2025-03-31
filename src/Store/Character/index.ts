@@ -65,7 +65,7 @@ const character: Slice<CharacterProps> = createSlice({
   reducers: {
     updateCharacter: (
       state: CharacterProps,
-      action: PayloadAction<CharacterProps>
+      action: PayloadAction<CharacterProps>,
     ) => {
       return {
         ...state,
