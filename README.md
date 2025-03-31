@@ -21,3 +21,16 @@ VITE_CHAT_SERVER=your_chat_server_address
 
 5. Install the required dependencies with by running `npm install` on your terminal
 6. You can start the client locally by running `npm run dev`
+
+## How to contribute
+
+If you wish to contribute, please follow the protocol bellow:
+
+1. Checkout `dev` and make sure latest changes are pulled (`git checkout dev && git fetch && git pull`)
+2. Branch out of dev and name your branch according to what your PR is going to bring:
+   - `feature/YOUR_FEATURE` if you are adding a new feature (tests are considered a feature if standing alone)
+   - `fix/WHAT_YOU_FIXED` for bugs you might correct
+   - `lint/WHAT_YOU_CHANGED` if you add comments or lint parts of the code
+   - `refactor/WHAT_IS_AFFECTED` if you do refactoring
+3. Make sure that your PR description is as thorough as possible and follows the checks needed for validation.
+4. Assign me to the review. If not changes are needed I will tag you, merge and delete the branch myself.
