@@ -1,5 +1,4 @@
 import { Provider } from "react-redux";
-import CharacterSheet from "./Screens/CharacterSheet/CharacterSheet";
 import Starfield from "./Screens/Starfield/Starfield";
 import store, { persistor } from "./Store";
 import Popup from "./Components/Popup/Popup";
@@ -35,7 +34,6 @@ function App() {
         setSession(session);
       }
     );
-
     return () => subscription.unsubscribe();
   }, []);
 
@@ -66,10 +64,6 @@ function App() {
                   element={<CharacterSelection />}
                 />
                 <Route path="/home" element={<Home />} />
-                <Route
-                  path="/character-sheet"
-                  element={<CharacterSheet name={"Bilbo Baggins"} />}
-                />
               </Routes>
             </Router>
             <Popup />
