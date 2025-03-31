@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { ChatEntry } from "../../Components/SideChat/SideChat";
+import { ChatEntry } from "@/Components/SideChat/SideChat";
 
 interface ChatProps {
   chatEntries: ChatEntry[];
@@ -25,7 +25,7 @@ const Chat: Slice<ChatProps> = createSlice({
     },
     updateChatCmdHistory: (
       state: ChatProps,
-      action: PayloadAction<string[]>
+      action: PayloadAction<string[]>,
     ) => {
       return {
         ...state,

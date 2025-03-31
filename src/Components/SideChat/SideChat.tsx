@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./SideChat.css";
-import {
-  AbilitiesList,
-  WaitsList,
-} from "../../Screens/CharacterSelection/types";
-import { parseMessage } from "../../Functions/parseMessage";
+import { AbilitiesList, WaitsList } from "@/Screens/CharacterSelection/types";
+import { parseMessage } from "@/Functions/parseMessage";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetChat,
   resetChatCmdHistory,
   updateChatCmdHistory,
-} from "../../Store/Chat";
-import { RootState } from "../../Store";
-import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+} from "@/Store/Chat";
+import { RootState } from "@/Store";
+import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 /*
 This data structure is shared with the web server (`chat-server-void-farers` repository).
@@ -97,18 +94,18 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   const { socket, isConnected } = useSocket();
 
   const chatHistory: ChatEntry[] = useSelector(
-    (state: RootState) => state.chat.chatEntries
+    (state: RootState) => state.chat.chatEntries,
   );
   const cmdHistoryStore: string[] = useSelector(
-    (state: RootState) => state.chat.cmdHistory
+    (state: RootState) => state.chat.cmdHistory,
   );
   const maxHistory: number = useSelector(
-    (state: RootState) => state.chat.maxHistory
+    (state: RootState) => state.chat.maxHistory,
   );
 
   const [inputValue, setInputValue] = useState<string>("");
   const [historyCmdLength, setHistoryCmdLength] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);

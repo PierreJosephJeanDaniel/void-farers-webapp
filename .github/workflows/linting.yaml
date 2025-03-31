@@ -1,0 +1,29 @@
+name: React App Linting
+on:
+  push:
+    paths:
+      - src/**
+      - __tests__/**
+      - __mocks__/**
+      - .eslintrc.js
+      - .github/workflows/linting.yaml
+
+jobs:
+  run-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 18.15
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.15
+      - name: install
+        run: npm install
+      - name: check types
+        run: npm run type-check
+      - name: lint
+        if: always()
+        run: npm run lint
+      - name: prettier
+        if: always()
+        run: npm run prettier

@@ -1,7 +1,7 @@
-import { ChatMessage, ChatRoll } from "../Components/SideChat/SideChat";
+import { ChatMessage, ChatRoll } from "@/Components/SideChat/SideChat";
 
 /**
- * Parses a `ChatMessage`, looking for a `/r` command to roll dice, then calls `rollDice` to calculate the total value of the dice rolled if needed and returns the appropriate message type. The expression also accepts additional roles and hard numbers (e.g. `/r 1d20 + 5 + 2d6`). If a 1d20 is rolled and the value is 20, the `critical` property will be set to `"success"`. If a d20 is rolled and the value is 1, the `critical` property will be set to `"fail"`. ONLY 1d20 CAN TRIGGER CRITICALS!
+ * Parses a `ChatMessage`, looking for a `/r` command to roll dice, then calls `rollDice` to calculate the total value of the dice rolled if needed and returns the appropriate message type. The expression also accepts additional roles and hard numbers (e.g. `/r 1d20 + 5 + 2d6`). If a 1d20 is rolled and the value is 20, the `critical` property will be set to `"success"`. If a d20 is rolled and the value is 1, the `critical` property will be set to `"fail"`. ONLY 1d20 CAN TRIGGER CRITICAL!
  * @param {ChatMessage} message - The message to parse
  * @returns {ChatRoll | ChatMessage} The parsed message, which is either a `ChatRoll` if `/r` has been detected or the original `ChatMessage` otherwise
  */

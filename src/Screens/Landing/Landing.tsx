@@ -1,11 +1,11 @@
-import Globe from "../../Components/Globe/Globe";
+import Globe from "@/Components/Globe/Globe";
 import "./Landing.css";
-import ContinueComponent from "../../Components/ContinueComponent/ContinueComponent";
-import Airlock from "../../Components/AirLock/AirLock";
+import ContinueComponent from "@/Components/ContinueComponent/ContinueComponent";
+import Airlock from "@/Components/AirLock/AirLock";
 import { useNavigate } from "react-router-dom";
-import { supabaseManager } from "../../Managers/SupabaseManager/SupabaseManager";
+import { supabaseManager } from "@/Managers/SupabaseManager/SupabaseManager";
 import { useDispatch } from "react-redux";
-import { setTracker } from "../../Store/ChangeTracker";
+import { setTracker } from "@/Store/ChangeTracker";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();

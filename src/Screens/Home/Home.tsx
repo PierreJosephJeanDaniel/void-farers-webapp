@@ -1,21 +1,21 @@
 import "./Home.css";
-import { CharacterProps } from "../CharacterSelection/types";
+import { CharacterProps } from "@/Screens/CharacterSelection/types";
 import { useSelector } from "react-redux";
 import React from "react";
-import { RootState } from "../../Store";
-import HomeHeader from "../../Components/HomeHeader/HomeHeader";
-import { TabOptions } from "../../Settings/TabOptions";
-import AbilityContainer from "../../Components/AbilityContainer/AbilityContainer";
-import Inventory from "../../Components/Inventory/Inventory";
-import MapContainer from "../../Components/MapContainer/MapContainer";
-import MainPage from "../../Components/MainPage/MainPage";
+import { RootState } from "@/Store";
+import HomeHeader from "@/Components/HomeHeader/HomeHeader";
+import { TabOptions } from "@/Settings/TabOptions";
+import AbilityContainer from "@/Components/AbilityContainer/AbilityContainer";
+import Inventory from "@/Components/Inventory/Inventory";
+import MapContainer from "@/Components/MapContainer/MapContainer";
+import MainPage from "@/Components/MainPage/MainPage";
 
 const Home: React.FC = () => {
   const [currentTab, setCurrentTab] = React.useState<TabOptions>(
-    TabOptions.HOME
+    TabOptions.HOME,
   );
   const character: CharacterProps = useSelector(
-    (state: RootState) => state.character
+    (state: RootState) => state.character,
   );
 
   const handleClick = (tab: TabOptions) => {

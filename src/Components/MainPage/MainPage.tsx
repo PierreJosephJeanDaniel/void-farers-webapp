@@ -1,11 +1,11 @@
 import React from "react";
 import "./MainPage.css";
-import Shield from "../Shield/Shield";
+import Shield from "@/Components/Shield/Shield";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
-import Health from "../Health/Health";
-import Aegis from "../Aegis/Aegis";
-import SideChat from "../SideChat/SideChat";
+import { RootState } from "@/Store";
+import Health from "@/Components/Health/Health";
+import Aegis from "@/Components/Aegis/Aegis";
+import SideChat from "@/Components/SideChat/SideChat";
 import {
   decreaseAegis,
   decreaseArmor,
@@ -14,9 +14,9 @@ import {
   increaseArmor,
   increaseHp,
   updateCharacter,
-} from "../../Store/Character";
-import { setTracker } from "../../Store/ChangeTracker";
-import SpaceWorkInProgress from "../WorkInProgress/SpaceWorkInProgress";
+} from "@/Store/Character";
+import { setTracker } from "@/Store/ChangeTracker";
+import SpaceWorkInProgress from "@/Components/WorkInProgress/SpaceWorkInProgress";
 
 enum Category {
   HEALTH = 0,
@@ -28,31 +28,31 @@ const MainPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const maxHealth: number = useSelector(
-    (state: RootState) => state.character.MaxHp
+    (state: RootState) => state.character.MaxHp,
   );
   const maxShield: number = useSelector(
-    (state: RootState) => state.character.MaxArmor
+    (state: RootState) => state.character.MaxArmor,
   );
   const maxAegis: number = useSelector(
-    (state: RootState) => state.character.MaxAegis
+    (state: RootState) => state.character.MaxAegis,
   );
 
   const userName: string = useSelector(
-    (state: RootState) => state.character.Name
+    (state: RootState) => state.character.Name,
   );
 
   const colorId: string = useSelector(
-    (state: RootState) => state.character.ColorId
+    (state: RootState) => state.character.ColorId,
   );
 
   const [shield, setShield] = React.useState<number>(
-    useSelector((state: RootState) => state.character.Armor)
+    useSelector((state: RootState) => state.character.Armor),
   );
   const [aegis, setAegis] = React.useState<number>(
-    useSelector((state: RootState) => state.character.Aegis)
+    useSelector((state: RootState) => state.character.Aegis),
   );
   const [health, setHealth] = React.useState<number>(
-    useSelector((state: RootState) => state.character.Hp)
+    useSelector((state: RootState) => state.character.Hp),
   );
 
   const handleClick = (category: Category, value: "+" | "-") => {
@@ -111,7 +111,7 @@ const MainPage: React.FC = () => {
     setShield(maxShield);
     setAegis(maxAegis);
     dispatch(
-      updateCharacter({ Hp: maxHealth, Armor: maxShield, Aegis: maxAegis })
+      updateCharacter({ Hp: maxHealth, Armor: maxShield, Aegis: maxAegis }),
     );
     dispatch(setTracker(true));
   };

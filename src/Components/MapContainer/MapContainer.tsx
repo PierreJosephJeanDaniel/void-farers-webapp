@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./MapContainer.css";
-import map from "../../assets/solarsystem.svg";
+import map from "@/assets/solarsystem.svg";
 
 const MapContainer: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);

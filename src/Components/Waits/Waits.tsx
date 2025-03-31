@@ -1,10 +1,10 @@
 import React from "react";
 import "./Waits.css";
-import { WaitsType } from "../../Screens/CharacterSelection/types";
+import { WaitsType } from "@/Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
-import { openPopup } from "../../Store/Popup";
-import { ChatRoll } from "../SideChat/SideChat";
-import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+import { openPopup } from "@/Store/Popup";
+import { ChatRoll } from "@/Components/SideChat/SideChat";
+import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;
@@ -27,8 +27,8 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
     modifier === 0
       ? ""
       : modifier > 0
-      ? `+ ${modifier}`
-      : `- ${Math.abs(modifier)}`;
+        ? `+ ${modifier}`
+        : `- ${Math.abs(modifier)}`;
 
   const handleClick = async () => {
     const message: string = `${name}`;
@@ -45,7 +45,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
         message: message,
         value: calculatedValue,
         critical: critical,
-      })
+      }),
     );
     const newRollMessage: ChatRoll = {
       author: userName,

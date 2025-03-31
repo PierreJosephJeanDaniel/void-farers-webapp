@@ -1,5 +1,4 @@
 import { Provider } from "react-redux";
-import CharacterSheet from "./Screens/CharacterSheet/CharacterSheet";
 import Starfield from "./Screens/Starfield/Starfield";
 import store, { persistor } from "./Store";
 import Popup from "./Components/Popup/Popup";
@@ -13,14 +12,14 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Landing from "./Screens/Landing/Landing";
+import Landing from "@/Screens/Landing/Landing";
 import "./App.css";
-import CharacterSelection from "./Screens/CharacterSelection/CharacterSelection";
-import { supabaseManager } from "./Managers/SupabaseManager/SupabaseManager";
+import CharacterSelection from "@/Screens/CharacterSelection/CharacterSelection";
+import { supabaseManager } from "@/Managers/SupabaseManager/SupabaseManager";
 import { PersistGate } from "redux-persist/integration/react";
-import Home from "./Screens/Home/Home";
-import ObjectPopup from "./Components/ObjectPopup/ObjectPopup";
-import { SocketProvider } from "./Wrappers/ChatSocket/ChatSocket";
+import Home from "@/Screens/Home/Home";
+import ObjectPopup from "@/Components/ObjectPopup/ObjectPopup";
+import { SocketProvider } from "@/Wrappers/ChatSocket/ChatSocket";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -33,9 +32,8 @@ function App() {
     const subscription = supabaseManager.onAuthStateChange(
       (_event, session) => {
         setSession(session);
-      }
+      },
     );
-
     return () => subscription.unsubscribe();
   }, []);
 
@@ -66,10 +64,6 @@ function App() {
                   element={<CharacterSelection />}
                 />
                 <Route path="/home" element={<Home />} />
-                <Route
-                  path="/character-sheet"
-                  element={<CharacterSheet name={"Bilbo Baggins"} />}
-                />
               </Routes>
             </Router>
             <Popup />

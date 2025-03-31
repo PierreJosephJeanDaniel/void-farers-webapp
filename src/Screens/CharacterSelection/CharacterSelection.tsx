@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { RootState } from "../../Store";
+import { RootState } from "@/Store";
 import { useDispatch, useSelector } from "react-redux";
-import { supabaseManager } from "../../Managers/SupabaseManager/SupabaseManager";
+import { supabaseManager } from "@/Managers/SupabaseManager/SupabaseManager";
 import "./CharacterSelection.css";
-import Airlock from "../../Components/AirLock/AirLock";
-import ReturnArrow from "../../Components/ReturnArrow/ReturnArrow";
+import Airlock from "@/Components/AirLock/AirLock";
+import ReturnArrow from "@/Components/ReturnArrow/ReturnArrow";
 import { useNavigate } from "react-router-dom";
 import { CharacterProps } from "./types";
-import { updateCharacter } from "../../Store/Character";
-import { initiateInventory } from "../../Store/Inventory";
+import { updateCharacter } from "@/Store/Character";
+import { initiateInventory } from "@/Store/Inventory";
 
 const CharacterSelection: React.FC = () => {
   const [characters, setCharacters] = useState<string[]>([]);

@@ -5,7 +5,7 @@ import {
   CharacterProps,
   WAITS,
   WaitsList,
-} from "../../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 
 const initialWaits: Record<WaitsList, number> = {
   [WAITS.WILL]: 0,
@@ -65,7 +65,7 @@ const character: Slice<CharacterProps> = createSlice({
   reducers: {
     updateCharacter: (
       state: CharacterProps,
-      action: PayloadAction<CharacterProps>
+      action: PayloadAction<CharacterProps>,
     ) => {
       return {
         ...state,

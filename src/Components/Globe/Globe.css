@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Venite";
-  src: url("../../fonts/VeniteAdoremus-rgRBA.ttf") format("trueType");
+  src: url("@/fonts/VeniteAdoremus-rgRBA.ttf") format("trueType");
 }
 
 @font-face {
   font-family: "Sevastopol";
-  src: url("../../fonts/Sevastopol-Interface.ttf") format("trueType");
+  src: url("@/fonts/Sevastopol-Interface.ttf") format("trueType");
 }
 
 @keyframes spin {

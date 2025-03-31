@@ -1,15 +1,15 @@
 import React from "react";
 import "./HomeHeader.css";
-import { TabOptions } from "../../Settings/TabOptions";
-import SaveIcon from "../SaveIcon/SaveIcon";
+import { TabOptions } from "@/Settings/TabOptions";
+import SaveIcon from "@/Components/SaveIcon/SaveIcon";
 import {
   CharacterProps,
   ObjectProps,
-} from "../../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Store";
-import { setTracker } from "../../Store/ChangeTracker";
-import { supabaseManager } from "../../Managers/SupabaseManager/SupabaseManager";
+import { RootState } from "@/Store";
+import { setTracker } from "@/Store/ChangeTracker";
+import { supabaseManager } from "@/Managers/SupabaseManager/SupabaseManager";
 interface HomeHeaderProps {
   name: string;
   handleClick: (tab: TabOptions) => void;
@@ -24,13 +24,13 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
   const dispatch = useDispatch();
 
   const characterData: CharacterProps = useSelector(
-    (state: RootState) => state.character
+    (state: RootState) => state.character,
   );
   const inventoryData: ObjectProps[] = useSelector(
-    (state: RootState) => state.inventory.objectList
+    (state: RootState) => state.inventory.objectList,
   );
   const isChangesMade: boolean = useSelector(
-    (state: RootState) => state.changeTracker.change
+    (state: RootState) => state.changeTracker.change,
   );
 
   const handleSave = async () => {

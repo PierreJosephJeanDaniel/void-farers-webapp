@@ -4,7 +4,7 @@ import {
   ObjectProps,
   WAITS,
   WaitsList,
-} from "../Screens/CharacterSelection/types";
+} from "@/Screens/CharacterSelection/types";
 
 type ListType = "abilities" | "waits";
 
@@ -18,7 +18,7 @@ type ListType = "abilities" | "waits";
 export const checkInventoryModifiers = (
   props: Record<AbilitiesList, number> | Record<WaitsList, number>,
   inventory: ObjectProps[],
-  listType: ListType
+  listType: ListType,
 ): Record<AbilitiesList, number> | Record<WaitsList, number> => {
   // Create a properly typed copy based on listType
   const updatedProps:
@@ -31,7 +31,7 @@ export const checkInventoryModifiers = (
   inventory.forEach((object) => {
     if (object.rollAssist && object.rollModifier === undefined) {
       console.error(
-        `Error: object ${object.name} has a rollAssist but no rollModifier value`
+        `Error: object ${object.name} has a rollAssist but no rollModifier value`,
       );
       return;
     }
@@ -70,7 +70,7 @@ export const checkInventoryModifiers = (
   inventory.forEach((object) => {
     if (object.rollAssist && object.rollModifier === undefined) {
       console.error(
-        `Error: object ${object.name} has a rollAssist but no rollModifier value`
+        `Error: object ${object.name} has a rollAssist but no rollModifier value`,
       );
       return;
     }

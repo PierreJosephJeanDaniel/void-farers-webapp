@@ -1,11 +1,10 @@
 import React from "react";
 import "./Abilities.css";
 import { useDispatch } from "react-redux";
-import { openPopup } from "../../Store/Popup";
-import { ChatRoll } from "../SideChat/SideChat";
-// import { updateChat } from "../../Store/Chat";
-import { AbilityType } from "../../Screens/CharacterSelection/types";
-import { useSocket } from "../../Wrappers/ChatSocket/UseSocket";
+import { openPopup } from "@/Store/Popup";
+import { ChatRoll } from "@/Components/SideChat/SideChat";
+import { AbilityType } from "@/Screens/CharacterSelection/types";
+import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface AbilityProps {
   name: string;
@@ -47,7 +46,7 @@ const Ability: React.FC<AbilityProps> = ({
         message: message,
         value: calculatedValue,
         critical: critical,
-      })
+      }),
     );
     const newRollMessage: ChatRoll = {
       author: userName,

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Venite";
-  src: url("../../fonts/VeniteAdoremus-rgRBA.ttf") format("trueType");
+  src: url("@/fonts/VeniteAdoremus-rgRBA.ttf") format("trueType");
 }
 
 .character-sheet {
