@@ -20,7 +20,8 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install 
+        # I will have to change this to npm ci
 
       - name: Run unit tests
         run: npm run test:unit
