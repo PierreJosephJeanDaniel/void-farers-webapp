@@ -17,7 +17,8 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.15
+          node-version: '18.15'
+          cache: 'npm'
 
       - name: install dependencies
         run: npm ci
@@ -32,3 +33,11 @@ jobs:
       - name: prettier
         if: always()
         run: npm run prettier
+
+      - name: Upload linting coverage
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
