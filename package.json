@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "type-check": "tsc --project tsconfig.app.json --noEmit",
     "prettier": "prettier src --check",
-    "prettier:fix": "prettier src --write"
+    "prettier:fix": "prettier src --write",
+    "test": "npx jest --passWithNoTests",
+    "test:unit": "npx jest .unit.test --passWithNoTests",
+    "test:integration": "npx jest .integration.test --passWithNoTests"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
