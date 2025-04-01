@@ -33,11 +33,3 @@ jobs:
       - name: prettier
         if: always()
         run: npm run prettier
-
-      - name: Upload linting coverage
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 7
