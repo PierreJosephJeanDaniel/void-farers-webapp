@@ -3,8 +3,6 @@ import "./Waits.css";
 import { WaitsType } from "@/Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
 import { openPopup } from "@/Store/Popup";
-import { ChatRoll } from "@/Components/SideChat/SideChat";
-import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;
@@ -21,7 +19,6 @@ interface WaitsProps {
 
 const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
   const dispatch = useDispatch();
-  const { socket } = useSocket();
   const modifier: number = value - 5;
   const modifierSign: string =
     modifier === 0
@@ -30,36 +27,17 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
         ? `+ ${modifier}`
         : `- ${Math.abs(modifier)}`;
 
-  const handleClick = async () => {
-    const message: string = `${name}`;
-    let critical: undefined | "success" | "fail" = undefined;
-    const randomValue: number = Math.floor(Math.random() * 20) + 1;
-    if (randomValue === 20) {
-      critical = "success";
-    } else if (randomValue === 1) {
-      critical = "fail";
-    }
-    const calculatedValue: number = randomValue + modifier;
+  const handleClick = () => {
+    console.log("Opening roll type selector popup for", name);
     dispatch(
       openPopup({
-        message: message,
-        value: calculatedValue,
-        critical: critical,
+        message: name,
+        modifier: value,
+        mode: "rollTypeSelect",
+        userName,
+        colorId,
       }),
     );
-    const newRollMessage: ChatRoll = {
-      author: userName,
-      rollType: name,
-      rollValue: calculatedValue,
-      critical: critical,
-      colorId: colorId,
-    };
-
-    setTimeout(() => {
-      if (socket) {
-        socket.emit("sendMessage", newRollMessage);
-      }
-    }, 1700);
   };
   return (
     <div className="wait" onClick={handleClick}>

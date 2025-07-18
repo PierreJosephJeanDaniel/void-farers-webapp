@@ -2,9 +2,7 @@ import React from "react";
 import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "@/Store/Popup";
-import { ChatRoll } from "@/Components/SideChat/SideChat";
 import { AbilityType } from "@/Screens/CharacterSelection/types";
-import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface AbilityProps {
   name: string;
@@ -26,47 +24,32 @@ const Ability: React.FC<AbilityProps> = ({
   colorId,
 }) => {
   const dispatch = useDispatch();
-  const { socket } = useSocket();
+
   const addedValue: string =
     value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
-  const handleClick = async () => {
-    const message: string = `${name}`;
-    let critical: undefined | "success" | "fail" = undefined;
-    const randomValue: number = Math.floor(Math.random() * 20) + 1;
-    if (randomValue === 20) {
-      critical = "success";
-    }
-    if (randomValue === 1) {
-      critical = "fail";
-    }
-    const calculatedValue: number = randomValue + value;
-    await dispatch(
+  // This opens the RollTypeSelector modal
+  const handleClick = () => {
+    console.log("Opening roll type selector popup for", name);
+    dispatch(
       openPopup({
-        message: message,
-        value: calculatedValue,
-        critical: critical,
+        message: name,
+        modifier: value,
+        mode: "rollTypeSelect",
+        userName,
+        colorId,
       }),
     );
-    const newRollMessage: ChatRoll = {
-      author: userName,
-      rollType: name,
-      rollValue: calculatedValue,
-      critical: critical,
-      colorId: colorId,
-    };
-    setTimeout(() => {
-      if (socket) {
-        socket.emit("sendMessage", newRollMessage);
-      }
-    }, 1700);
   };
 
   return (
-    <div className="ability" onClick={handleClick}>
-      <div className="text">{name}</div>
-      <div className="number">{addedValue}</div>
-    </div>
+    <>
+      {/* Ability card */}
+      <div className="ability" onClick={handleClick}>
+        <div className="text">{name}</div>
+        <div className="number">{addedValue}</div>
+      </div>
+    </>
   );
 };
 
