@@ -3,8 +3,6 @@ import "./Waits.css";
 import { WaitsType } from "@/Screens/CharacterSelection/types";
 import { useDispatch } from "react-redux";
 import { openPopup } from "@/Store/Popup";
-import { ChatRoll } from "@/Components/SideChat/SideChat";
-import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
 
 interface WaitProps {
   name: string;
@@ -21,7 +19,6 @@ interface WaitsProps {
 
 const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
   const dispatch = useDispatch();
-  const { socket } = useSocket();
   const modifier: number = value - 5;
   const modifierSign: string =
     modifier === 0

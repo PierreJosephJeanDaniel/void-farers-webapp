@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "@/Store/Popup";
