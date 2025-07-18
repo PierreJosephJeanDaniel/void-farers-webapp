@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Abilities.css";
 import { useDispatch } from "react-redux";
 import { openPopup } from "@/Store/Popup";
 import { ChatRoll } from "@/Components/SideChat/SideChat";
 import { AbilityType } from "@/Screens/CharacterSelection/types";
 import { useSocket } from "@/Wrappers/ChatSocket/UseSocket";
+import { rollDice, RollType } from "@/Components/Roll/Roll";
+import { RollTypeSelector } from "@/Components/RollSelector/RollSelector";
 
 interface AbilityProps {
   name: string;
@@ -27,34 +29,39 @@ const Ability: React.FC<AbilityProps> = ({
 }) => {
   const dispatch = useDispatch();
   const { socket } = useSocket();
+
+  const [isSelectorOpen, setSelectorOpen] = useState(false);
+
   const addedValue: string =
     value > 0 ? `+ ${value}` : value < 0 ? `- ${Math.abs(value)}` : "";
 
-  const handleClick = async () => {
-    const message: string = `${name}`;
-    let critical: undefined | "success" | "fail" = undefined;
-    const randomValue: number = Math.floor(Math.random() * 20) + 1;
-    if (randomValue === 20) {
-      critical = "success";
-    }
-    if (randomValue === 1) {
-      critical = "fail";
-    }
-    const calculatedValue: number = randomValue + value;
+  // This opens the RollTypeSelector modal
+  const handleClick = () => {
+    setSelectorOpen(true);
+  };
+
+ // This handles the roll after the user selects a roll type
+  const handleRollTypeSelect = async (rollType: RollType) => {
+    setSelectorOpen(false);
+
+    const { total, critical } = rollDice(value, rollType);
+
     await dispatch(
       openPopup({
-        message: message,
-        value: calculatedValue,
-        critical: critical,
-      }),
+        message: name,
+        value: total,
+        critical,
+      })
     );
+
     const newRollMessage: ChatRoll = {
       author: userName,
       rollType: name,
-      rollValue: calculatedValue,
-      critical: critical,
-      colorId: colorId,
+      rollValue: total,
+      critical,
+      colorId,
     };
+
     setTimeout(() => {
       if (socket) {
         socket.emit("sendMessage", newRollMessage);
@@ -63,10 +70,21 @@ const Ability: React.FC<AbilityProps> = ({
   };
 
   return (
-    <div className="ability" onClick={handleClick}>
-      <div className="text">{name}</div>
-      <div className="number">{addedValue}</div>
-    </div>
+    <>
+      {/* Ability card */}
+      <div className="ability" onClick={handleClick}>
+        <div className="text">{name}</div>
+        <div className="number">{addedValue}</div>
+      </div>
+
+      {/* Roll Type Selection Popup */}
+      {isSelectorOpen && (
+        <RollTypeSelector
+          onSelect={handleRollTypeSelect}
+          onClose={() => setSelectorOpen(false)}
+        />
+      )}
+    </>
   );
 };
 
