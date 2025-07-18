@@ -30,17 +30,17 @@ const Ability: React.FC<AbilityProps> = ({
 
   // This opens the RollTypeSelector modal
   const handleClick = () => {
-  console.log("Opening roll type selector popup for", name);
-  dispatch(
-    openPopup({
-      message: name,
-      modifier: value,
-      mode: "rollTypeSelect",
-      userName,
-      colorId,
-    })
-  );
-};
+    console.log("Opening roll type selector popup for", name);
+    dispatch(
+      openPopup({
+        message: name,
+        modifier: value,
+        mode: "rollTypeSelect",
+        userName,
+        colorId,
+      }),
+    );
+  };
 
   return (
     <>

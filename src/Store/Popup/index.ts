@@ -6,7 +6,7 @@ interface PopupState {
   value?: number;
   critical?: "success" | "fail";
   modifier?: number;
-  userName?: string; 
+  userName?: string;
   colorId?: string;
   mode: "rollTypeSelect" | "rollResult" | null;
 }
@@ -29,7 +29,7 @@ const popup = createSlice({
         value?: number;
         critical?: "success" | "fail";
         modifier?: number;
-        userName?: string; 
+        userName?: string;
         colorId?: string;
         mode: "rollTypeSelect" | "rollResult" | null;
       }>,
@@ -41,7 +41,7 @@ const popup = createSlice({
       state.modifier = action.payload.modifier;
       state.userName = action.payload.userName;
       state.colorId = action.payload.colorId;
-      state.mode = action.payload.mode; 
+      state.mode = action.payload.mode;
     },
     closePopup(state) {
       state.isOpen = false;

@@ -39,7 +39,7 @@ const Wait: React.FC<WaitProps> = ({ name, value, userName, colorId }) => {
         mode: "rollTypeSelect",
         userName,
         colorId,
-      })
+      }),
     );
   };
   return (

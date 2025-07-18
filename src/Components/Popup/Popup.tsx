@@ -44,16 +44,16 @@ const Popup: React.FC = () => {
       }),
     );
     const newRollMessage: ChatRoll = {
-    author: userName ?? "Unknown",
-    rollType: message,        // message holds ability name here
-    rollValue: total,
-    critical,
-    colorId: colorId ?? "default",
-  };
+      author: userName ?? "Unknown",
+      rollType: message, // message holds ability name here
+      rollValue: total,
+      critical,
+      colorId: colorId ?? "default",
+    };
 
-  if (socket) {
-    socket.emit("sendMessage", newRollMessage);
-  }
+    if (socket) {
+      socket.emit("sendMessage", newRollMessage);
+    }
   };
   console.log("Popup mode is:", mode);
   if (mode === "rollTypeSelect") {
@@ -68,16 +68,25 @@ const Popup: React.FC = () => {
           </div>
           <div className="popup-body">
             <div className="popup-body">
-              <button className="roll-button disadvantage" onClick={() => handleRollTypeSelect("disadvantage")}>
-    Disadvantage
-    </button>
-              <button className="roll-button normal" onClick={() => handleRollTypeSelect("normal")}>
-    Normal
-    </button>
-              <button className="roll-button advantage" onClick={() => handleRollTypeSelect("advantage")}>
-    Advantage
-    </button>
-</div>
+              <button
+                className="roll-button disadvantage"
+                onClick={() => handleRollTypeSelect("disadvantage")}
+              >
+                Disadvantage
+              </button>
+              <button
+                className="roll-button normal"
+                onClick={() => handleRollTypeSelect("normal")}
+              >
+                Normal
+              </button>
+              <button
+                className="roll-button advantage"
+                onClick={() => handleRollTypeSelect("advantage")}
+              >
+                Advantage
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -86,7 +95,9 @@ const Popup: React.FC = () => {
 
   if (mode === "rollResult") {
     const stringValue: string =
-      (value ?? 0) < 10 ? (value ?? 0).toString().padStart(2, "0") : (value ?? 0).toString();
+      (value ?? 0) < 10
+        ? (value ?? 0).toString().padStart(2, "0")
+        : (value ?? 0).toString();
 
     return (
       <div className="popup">

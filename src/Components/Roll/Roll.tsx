@@ -13,7 +13,10 @@ export interface RollResult {
 /**
  * Rolls a d20 with optional modifier and roll type (normal, advantage, disadvantage).
  */
-export function rollDice(modifier: number = 0, rollType: RollType = "normal"): RollResult {
+export function rollDice(
+  modifier: number = 0,
+  rollType: RollType = "normal",
+): RollResult {
   const rollD20 = () => Math.floor(Math.random() * 20) + 1;
 
   let rolls: number[] = [];

@@ -126,9 +126,9 @@
 .popup-body button {
   flex: 1;
   width: 100%;
-  font-size: 40px;       
-  padding: 6px 12px;    
-  margin: 4px;           
+  font-size: 40px;
+  padding: 6px 12px;
+  margin: 4px;
   border-radius: 6px;
   background-color: #333;
   color: white;
@@ -153,4 +153,3 @@
 .roll-button.normal:hover {
   background-color: #444; /* Neutral gray */
 }
-
