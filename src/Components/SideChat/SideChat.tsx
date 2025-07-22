@@ -109,6 +109,7 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
   );
   const [historyIndex, setHistoryIndex] = useState<number>(0);
   const chatHistoryRef = useRef<HTMLDivElement>(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
@@ -199,6 +200,101 @@ const SideChat: React.FC<SideChatProps> = (props: SideChatProps) => {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyPress}
         />
+      </div>
+      <div
+        className="d20-icon-bar"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "1.5rem",
+          backgroundColor: "#f0f0f0",
+          borderTop: "1px solid #ccc",
+        }}
+      >
+        <button
+          aria-label="Roll d20"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+            width: "5rem",
+            height: "5rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onClick={() => {
+            const d20Command = "/r 1d20";
+            if (!isButtonDisabled) {
+              const newMessage: ChatMessage = {
+                author: props.userName,
+                message: d20Command,
+                colorId: props.colorId,
+              };
+              const parsedMessage: ChatEntry = parseMessage(newMessage);
+              let cmdHistoryList: string[] = cmdHistoryStore;
+              const lastRegisteredCmd: string = cmdHistoryList
+                ? cmdHistoryList[0]
+                : "";
+              if (lastRegisteredCmd !== d20Command) {
+                if (
+                  cmdHistoryList !== undefined &&
+                  cmdHistoryList.length >= maxHistory
+                ) {
+                  cmdHistoryList = cmdHistoryList.slice(
+                    0,
+                    cmdHistoryList.length - 1,
+                  );
+                }
+                const updatedCmdHistory: string[] = cmdHistoryList
+                  ? [d20Command, ...cmdHistoryList]
+                  : [d20Command];
+                dispatch(updateChatCmdHistory(updatedCmdHistory));
+                setHistoryCmdLength(updatedCmdHistory.length);
+              }
+              if (socket) {
+                socket.emit("sendMessage", parsedMessage);
+              }
+              setHistoryIndex(0);
+              setInputValue("");
+
+              // Disable the button for 2 seconds
+              setIsButtonDisabled(true);
+              setTimeout(() => {
+                setIsButtonDisabled(false);
+              }, 2000);
+            }
+          }}
+        >
+          {/* Simple d20 SVG icon */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="16,2 30,8 30,24 16,30 2,24 2,8"
+              fill="#fff"
+              stroke="#222"
+              strokeWidth="2"
+            />
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              fontSize="14"
+              fill="#222"
+              fontWeight="bold"
+              dominantBaseline="middle"
+            >
+              d20
+            </text>
+          </svg>
+        </button>
       </div>
     </div>
   );
